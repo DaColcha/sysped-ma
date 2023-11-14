@@ -22,10 +22,10 @@ public class DetallePedidosEntity {
     @Column(name = "producto")
     private String producto;
     @ManyToOne
-    @JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false)
+    @JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false, insertable = false, updatable = false)
     private PedidoEntity pedidoByPedido;
     @ManyToOne
-    @JoinColumn(name = "producto", referencedColumnName = "idProducto", nullable = false)
+    @JoinColumn(name = "producto", referencedColumnName = "idProducto", nullable = false,insertable = false, updatable = false)
     private ProductoEntity productoByProducto;
 
     public int getNumDetalle() {

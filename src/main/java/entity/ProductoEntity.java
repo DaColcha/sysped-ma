@@ -8,6 +8,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "producto", schema = "sysped", catalog = "")
+@NamedQuery(name = "Productos.allResults", query = "SELECT p FROM  ProductoEntity p")
 public class ProductoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -24,7 +25,7 @@ public class ProductoEntity {
     private BigDecimal precio;
     @Basic
     @Column(name = "imagen")
-    private byte[] imagen;
+    private String imagen;
     @OneToMany(mappedBy = "productoByProducto")
     private Collection<DetallePedidosEntity> detallePedidosByIdProducto;
 
@@ -60,11 +61,11 @@ public class ProductoEntity {
         this.precio = precio;
     }
 
-    public byte[] getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(byte[] imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
@@ -80,7 +81,7 @@ public class ProductoEntity {
             return false;
         if (descripcion != null ? !descripcion.equals(that.descripcion) : that.descripcion != null) return false;
         if (precio != null ? !precio.equals(that.precio) : that.precio != null) return false;
-        if (!Arrays.equals(imagen, that.imagen)) return false;
+        if (imagen != null ? !imagen.equals(that.imagen) : that.imagen != null) return false;
 
         return true;
     }
@@ -91,7 +92,7 @@ public class ProductoEntity {
         result = 31 * result + (nombreProducto != null ? nombreProducto.hashCode() : 0);
         result = 31 * result + (descripcion != null ? descripcion.hashCode() : 0);
         result = 31 * result + (precio != null ? precio.hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(imagen);
+        result = 31 * result + (imagen != null ? imagen.hashCode() : 0);
         return result;
     }
 
@@ -105,13 +106,11 @@ public class ProductoEntity {
 
     @Override
     public String toString() {
-        return "ProductoEntity{" +
-                "idProducto='" + idProducto + '\'' +
-                ", nombreProducto='" + nombreProducto + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", precio=" + precio +
-                ", imagen=" + Arrays.toString(imagen) +
-                ", detallePedidosByIdProducto=" + detallePedidosByIdProducto +
-                '}';
+        return   "<div>"+
+                "<img src = \"" + imagen +"\"/>"+
+                "<div class = \"dato\">"+ nombreProducto + "</div>"+
+                "<div class = \"dato\">"+ descripcion + "</div>"+
+                "<div class = \"dato\">$"+ precio + "</div>"+
+                "</div>";
     }
 }

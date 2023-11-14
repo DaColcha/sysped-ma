@@ -19,10 +19,10 @@ public class FacturaEntity {
     @Column(name = "metodoPago")
     private String metodoPago;
     @ManyToOne
-    @JoinColumn(name = "cliente", referencedColumnName = "cedula", nullable = false)
+    @JoinColumn(name = "cliente", referencedColumnName = "cedula", nullable = false, insertable = false, updatable = false)
     private ClienteEntity clienteByCliente;
     @ManyToOne
-    @JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false)
+    @JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false,insertable = false, updatable = false)
     private PedidoEntity pedidoByPedido;
 
     public String getNumFactura() {

@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "detalle_pedidos", schema = "sysped", catalog = "")
+@NamedQuery(name = "Pedido.ultimo", query = "SELECT p FROM  PedidoEntity p ORDER BY idPedido DESC LIMIT 1")
 @IdClass(DetallePedidosEntityPK.class)
 public class DetallePedidosEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "numDetalle")
     private int numDetalle;
@@ -112,4 +112,5 @@ public class DetallePedidosEntity {
                 ", productoByProducto=" + productoByProducto +
                 '}';
     }
+
 }

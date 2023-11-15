@@ -1,7 +1,9 @@
 package com.example.syspedv1;
 
+import entity.PedidoEntity;
 import entity.ProductoEntity;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "menu", urlPatterns = {"","/"})
@@ -19,7 +22,7 @@ public class MenuServlet extends HttpServlet {
 
             try  {
                 DBConnection con = new DBConnection();
-                TypedQuery<ProductoEntity> productos = con.getEntityManager().createNamedQuery("Productos.allResults", ProductoEntity.class);
+                TypedQuery<ProductoEntity> productos = DBConnection.entityManager.createNamedQuery("Productos.allResults", ProductoEntity.class);
                 request.setAttribute("menu", FormarMenu(productos.getResultList()));
             } catch (Exception e) {
                 e.printStackTrace();
@@ -30,17 +33,21 @@ public class MenuServlet extends HttpServlet {
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         DBConnection con = new DBConnection();
+        PedidoEntity pedido = new PedidoEntity();
         int i = 0;
         double total = 0;
         String cadena =  "<div class = \"ticket\"> "+
-                     "<div class=\"ticket-header\">Ticket de Compra</div>"+"<table>"
+                     "<div class=\"ticket-header\">Ticket de Compra</div>"+
+                    "<div >codigo ticket: "+pedido.SiguienteTicket()+"</div>"+"<table>"
                     + "<tr>"
                     + "<th>Cantidad</th>"
                     + "<th>Nombre</th>"
                     + "<th>Precio Unitario</th>"
                     + "<th>Total</th>"
                     + "</tr>";
-        TypedQuery<ProductoEntity> productos = con.getEntityManager().createNamedQuery("Productos.allResults", ProductoEntity.class);
+        TypedQuery<ProductoEntity> productos = DBConnection.entityManager.createNamedQuery("Productos.allResults", ProductoEntity.class);
+        List<ProductoEntity> aux1 = new ArrayList<>();
+        List<Integer> cantidades = new ArrayList<>();
         for(ProductoEntity p : productos.getResultList()){
             String aux = request.getParameter("item"+i);
             if(aux != null){
@@ -48,11 +55,15 @@ public class MenuServlet extends HttpServlet {
                 if (!request.getParameter("cantidad"+i).isBlank()) {
                     cantidad = Integer.parseInt(request.getParameter("cantidad" + i));
                 }
+                aux1.add(p);
+                cantidades.add(cantidad);
                 cadena += formarItems(p, cantidad);
                 total += p.getPrecio().doubleValue() * cantidad;
             }
             i++;
         }
+        UtilsDB g = new UtilsDB();
+        g.GuardarPedido(pedido.SiguienteTicket(),cantidades,aux1);
         cadena += "<tr>"
                 + "<td colspan=\"3\"><strong>Total:</strong></td>"
                 + "<td>$ " + BigDecimal.valueOf(total) + "</td>"

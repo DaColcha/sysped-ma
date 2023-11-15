@@ -1,5 +1,6 @@
 package entity;
 
+import com.example.syspedv1.DBConnection;
 import jakarta.persistence.*;
 
 import java.sql.Date;
@@ -9,7 +10,6 @@ import java.util.Collection;
 @Entity
 @Table(name = "pedido", schema = "sysped", catalog = "")
 public class PedidoEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "idPedido")
     private String idPedido;
@@ -98,7 +98,27 @@ public class PedidoEntity {
     public void setFacturasByIdPedido(Collection<FacturaEntity> facturasByIdPedido) {
         this.facturasByIdPedido = facturasByIdPedido;
     }
+    private String ultimoCodigo(){
+        try  {
+            TypedQuery<PedidoEntity> pedidoMax = DBConnection.entityManager.createNamedQuery("Pedido.ultimo", PedidoEntity.class);
+            for(PedidoEntity p : pedidoMax.getResultList()){
+                return p.getIdPedido();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
+        return "00000";
+    }
+    public String SiguienteTicket(){
+        int ultimoNumero = Integer.parseInt(ultimoCodigo());
 
+        // Incrementar el número
+        int siguienteNumero = ultimoNumero + 1;
+
+        // Formatear el siguiente número como un código con ceros a la izquierda
+        return String.format("%05d", siguienteNumero);
+    }
     @Override
     public String toString() {
         return "PedidoEntity{" +

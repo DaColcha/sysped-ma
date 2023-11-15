@@ -7,32 +7,14 @@ import jakarta.persistence.Persistence;
 
 public class DBConnection {
 
-    private static final String PERSISTENCE_UNIT_NAME = "default";
-    private EntityManagerFactory entityManagerFactory;
-    private EntityManager entityManager;
-    private EntityTransaction transaction;
+    public static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+    public static EntityManager entityManager = entityManagerFactory.createEntityManager();
+    public static EntityTransaction transaction = entityManager.getTransaction();
+    public static void endConnection() {
 
-    public DBConnection() {
-        this.entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        this.entityManager = entityManagerFactory.createEntityManager();
-        this.transaction = entityManager.getTransaction();
+        entityManager.close();
+        entityManagerFactory.close();
+
     }
 
-    public EntityManager getEntityManager() {
-        return entityManager;
-    }
-
-    public EntityTransaction getTransaction() {
-        return transaction;
-    }
-
-    public void closeConnection() {
-        if (entityManager != null && entityManager.isOpen()) {
-            entityManager.close();
-        }
-
-        if (entityManagerFactory != null && entityManagerFactory.isOpen()) {
-            entityManagerFactory.close();
-        }
-    }
 }

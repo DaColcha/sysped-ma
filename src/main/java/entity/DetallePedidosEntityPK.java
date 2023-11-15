@@ -10,15 +10,12 @@ import java.io.Serializable;
 public class DetallePedidosEntityPK implements Serializable {
     @Column(name = "numDetalle")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int numDetalle;
     @Column(name = "pedido")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String pedido;
     @Column(name = "producto")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String producto;
 
     public int getNumDetalle() {

@@ -5,42 +5,34 @@ import entity.PedidoEntity;
 import entity.ProductoEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
 
-import java.sql.Time;
+import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class UtilsDB {
-    public void GuardarPedido(String num, List<Integer> cantidad, List<ProductoEntity> p) {
-            PedidoEntity pedido = new PedidoEntity();
-            pedido.setIdPedido(num);
-            pedido.setFechaPedido(new java.sql.Date(obtenerFecha().getTime()));
-            pedido.setEstado("Pendiente");
-            pedido.setHoraPedido(obtenerHoraActual());
-            int contador = 0;
-            List<DetallePedidosEntity> detalles = new ArrayList<>();
-            for (ProductoEntity aux : p) {
-                DetallePedidosEntity detalle = new DetallePedidosEntity();
-                detalle.setNumDetalle(cantidad.get(contador));
-                detalle.setPedido(num);
-                detalle.setProducto(aux.getIdProducto());
-                contador++;
-                detalles.add(detalle);
-            }
-            guardar(pedido,detalles);
-    }
-    // Método para obtener la fecha en formato dd/MM/yyyy
-    public Date obtenerFecha() {
-    return new java.util.Date();
-    }
+public class HistorialPedidos {
+    private List<PedidoEntity> pedididos;
 
-    // Método para obtener la hora hasta minutos
-    public Time obtenerHoraActual() {
-        java.util.Date utilDate = new java.util.Date();
-        return new Time(utilDate.getTime());
+    public void agregarPedido(String num, List<Integer> cantidad, List<ProductoEntity> p){
+        PedidoEntity pedido = new PedidoEntity();
+        pedido.setIdPedido(num);
+        pedido.setFechaPedido(new java.sql.Date(pedido.obtenerFecha().getTime()));
+        pedido.setEstado("Pendiente");
+        pedido.setHoraPedido(pedido.obtenerHoraActual());
+        int contador = 0;
+        List<DetallePedidosEntity> detalles = new ArrayList<>();
+        for (ProductoEntity aux : p) {
+            DetallePedidosEntity detalle = new DetallePedidosEntity();
+            detalle.setNumDetalle(cantidad.get(contador));
+            detalle.setPedido(num);
+            detalle.setProducto(aux.getIdProducto());
+            contador++;
+            detalles.add(detalle);
+        }
+        guardarEnDB(pedido,detalles);
     }
-    public void guardar(PedidoEntity pedido, List<DetallePedidosEntity> detalles){
+    private void guardarEnDB(PedidoEntity pedido, List<DetallePedidosEntity> detalles){
         EntityManager entityManager = DBConnection.entityManager;
         EntityTransaction transaction = null;
 
@@ -76,6 +68,21 @@ public class UtilsDB {
             e.printStackTrace();
         }
     }
+
+
+    public String ultimoCodigo(){
+        try  {
+            TypedQuery<PedidoEntity> pedidoMax = DBConnection.entityManager.createNamedQuery("Pedido.ultimo", PedidoEntity.class);
+            for(PedidoEntity p : pedidoMax.getResultList()){
+                return p.getIdPedido();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
+        return "00000";
+    }
+
 
 
 }

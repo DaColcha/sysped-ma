@@ -1,11 +1,16 @@
 package entity;
 
 import com.example.syspedv1.DBConnection;
+import com.example.syspedv1.HistorialPedidos;
 import jakarta.persistence.*;
+import jakarta.servlet.http.HttpServletRequest;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "pedido", schema = "sysped", catalog = "")
@@ -98,27 +103,17 @@ public class PedidoEntity {
     public void setFacturasByIdPedido(Collection<FacturaEntity> facturasByIdPedido) {
         this.facturasByIdPedido = facturasByIdPedido;
     }
-    private String ultimoCodigo(){
-        try  {
-            TypedQuery<PedidoEntity> pedidoMax = DBConnection.entityManager.createNamedQuery("Pedido.ultimo", PedidoEntity.class);
-            for(PedidoEntity p : pedidoMax.getResultList()){
-                return p.getIdPedido();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-        }
-        return "00000";
-    }
-    public String SiguienteTicket(){
-        int ultimoNumero = Integer.parseInt(ultimoCodigo());
 
-        // Incrementar el número
-        int siguienteNumero = ultimoNumero + 1;
-
-        // Formatear el siguiente número como un código con ceros a la izquierda
-        return String.format("%05d", siguienteNumero);
+    public java.util.Date obtenerFecha() {
+        return new java.util.Date();
     }
+
+    // Método para obtener la hora hasta minutos
+    public Time obtenerHoraActual() {
+        java.util.Date utilDate = new java.util.Date();
+        return new Time(utilDate.getTime());
+    }
+
     @Override
     public String toString() {
         return "PedidoEntity{" +
@@ -130,4 +125,63 @@ public class PedidoEntity {
                 ", facturasByIdPedido=" + facturasByIdPedido +
                 '}';
     }
+
+    private String formarItems(ProductoEntity p, int cantidad){
+        return "<tr>"
+                + "<td>" + cantidad + "</td>"
+                + "<td>" + p.getNombreProducto() + "</td>"
+                + "<td>" + p.getPrecio() + "</td>"
+                + "<td>" + p.getPrecio().multiply(BigDecimal.valueOf(cantidad)) + "</td>"
+                + "</tr>";
+    }
+    public String generarCodigoTicket(){
+        HistorialPedidos h = new HistorialPedidos();
+        int ultimoNumero = Integer.parseInt(h.ultimoCodigo());
+
+        // Incrementar el número
+        int siguienteNumero = ultimoNumero + 1;
+
+        // Formatear el siguiente número como un código con ceros a la izquierda
+        return String.format("%05d", siguienteNumero);
+    }
+
+    public  String generarTicket(HttpServletRequest request){
+        int i = 0;
+        double total = 0;
+        String cadena =  "<div class = \"ticket\"> "+
+                "<div class=\"ticket-header\">Ticket de Compra</div>"+
+                "<div >codigo ticket: "+generarCodigoTicket()+"</div>"+"<table>"
+                + "<tr>"
+                + "<th>Cantidad</th>"
+                + "<th>Nombre</th>"
+                + "<th>Precio Unitario</th>"
+                + "<th>Total</th>"
+                + "</tr>";
+        TypedQuery<ProductoEntity> productos = DBConnection.entityManager.createNamedQuery("Productos.allResults", ProductoEntity.class);
+        List<ProductoEntity> aux1 = new ArrayList<>();
+        List<Integer> cantidades = new ArrayList<>();
+        for(ProductoEntity p : productos.getResultList()){
+            String aux = request.getParameter("item"+i);
+            if(aux != null){
+                int cantidad = 1;
+                if (!request.getParameter("cantidad"+i).isBlank()) {
+                    cantidad = Integer.parseInt(request.getParameter("cantidad" + i));
+                }
+                aux1.add(p);
+                cantidades.add(cantidad);
+                cadena += formarItems(p, cantidad);
+                total += p.getPrecio().doubleValue() * cantidad;
+            }
+            i++;
+        }
+        cadena += "<tr>"
+                + "<td colspan=\"3\"><strong>Total:</strong></td>"
+                + "<td>$ " + BigDecimal.valueOf(total) + "</td>"
+                + "</tr>";
+        cadena += "</table> <div/>";
+        HistorialPedidos h = new HistorialPedidos();
+        h.agregarPedido(generarCodigoTicket(),cantidades, aux1);
+        return cadena;
+    }
+
 }

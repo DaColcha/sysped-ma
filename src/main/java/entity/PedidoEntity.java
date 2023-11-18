@@ -136,18 +136,13 @@ public class PedidoEntity {
     }
     public String generarCodigoTicket(){
         HistorialPedidos h = new HistorialPedidos();
-        int ultimoNumero = Integer.parseInt(h.ultimoCodigo());
 
-        // Incrementar el número
-        int siguienteNumero = ultimoNumero + 1;
-
-        // Formatear el siguiente número como un código con ceros a la izquierda
-        return String.format("%05d", siguienteNumero);
+        // Formatear el ultimo número como un código con ceros a la izquierda
+        return String.format("%05d", Integer.parseInt(h.ultimoCodigo()) + 1);
     }
 
     public  String generarTicket(HttpServletRequest request){
-        int i = 0;
-        double total = 0;
+
         String cadena =  "<div class = \"ticket\"> "+
                 "<div class=\"ticket-header\">Ticket de Compra</div>"+
                 "<div >codigo ticket: "+generarCodigoTicket()+"</div>"+"<table>"
@@ -157,17 +152,22 @@ public class PedidoEntity {
                 + "<th>Precio Unitario</th>"
                 + "<th>Total</th>"
                 + "</tr>";
+
         TypedQuery<ProductoEntity> productos = DBConnection.entityManager.createNamedQuery("Productos.allResults", ProductoEntity.class);
-        List<ProductoEntity> aux1 = new ArrayList<>();
+        List<ProductoEntity> listaProductos = productos.getResultList();
         List<Integer> cantidades = new ArrayList<>();
-        for(ProductoEntity p : productos.getResultList()){
+
+        int i = 0;
+        double total = 0;
+
+        for(ProductoEntity p : listaProductos){
             String aux = request.getParameter("item"+i);
             if(aux != null){
                 int cantidad = 1;
                 if (!request.getParameter("cantidad"+i).isBlank()) {
                     cantidad = Integer.parseInt(request.getParameter("cantidad" + i));
                 }
-                aux1.add(p);
+
                 cantidades.add(cantidad);
                 cadena += formarItems(p, cantidad);
                 total += p.getPrecio().doubleValue() * cantidad;
@@ -179,8 +179,9 @@ public class PedidoEntity {
                 + "<td>$ " + BigDecimal.valueOf(total) + "</td>"
                 + "</tr>";
         cadena += "</table> <div/>";
+
         HistorialPedidos h = new HistorialPedidos();
-        h.agregarPedido(generarCodigoTicket(),cantidades, aux1);
+        h.agregarPedido(generarCodigoTicket(),cantidades, listaProductos);
         return cadena;
     }
 

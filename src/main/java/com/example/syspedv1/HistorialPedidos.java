@@ -46,12 +46,7 @@ public class HistorialPedidos {
             PedidoEntity pedidoExistente = entityManager.find(PedidoEntity.class, pedido.getIdPedido());
 
             // Si el pedido existe, actualizar sus atributos con los nuevos valores
-            if (pedidoExistente != null) {
-                pedidoExistente.setEstado(pedido.getEstado());
-                pedidoExistente.setFechaPedido(pedido.getFechaPedido());
-                pedidoExistente.setHoraPedido(pedido.getHoraPedido());
-                pedido = pedidoExistente;
-            }
+            actualizarPedido(pedidoExistente, pedido);
 
             // Guardar el pedido
             entityManager.persist(pedido);
@@ -71,6 +66,13 @@ public class HistorialPedidos {
         }
     }
 
+    public void actualizarPedido(PedidoEntity pedidoExistente, PedidoEntity pedido){
+        if (pedidoExistente != null) {
+            pedidoExistente.setEstado(pedido.getEstado());
+            pedidoExistente.setFechaPedido(pedido.getFechaPedido());
+            pedidoExistente.setHoraPedido(pedido.getHoraPedido());
+        }
+    }
 
     public String ultimoCodigo(){
         try  {

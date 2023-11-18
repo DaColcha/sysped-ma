@@ -7,31 +7,33 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HistorialPedidos {
-    private List<PedidoEntity> pedididos;
-
-    public void agregarPedido(String num, List<Integer> cantidad, List<ProductoEntity> p){
+    public void agregarPedido(String idPedido, List<Integer> numDetalles, List<ProductoEntity> productos){
         PedidoEntity pedido = new PedidoEntity();
-        pedido.setIdPedido(num);
+        pedido.setIdPedido(idPedido);
         pedido.setFechaPedido(new java.sql.Date(pedido.obtenerFecha().getTime()));
         pedido.setEstado("Pendiente");
         pedido.setHoraPedido(pedido.obtenerHoraActual());
+        guardarEnDB(pedido, obtenerDetallesPedido(idPedido, numDetalles, productos));
+    }
+    private static List<DetallePedidosEntity> obtenerDetallesPedido(String idPedido, List<Integer> numDetalles, List<ProductoEntity> productos) {
         int contador = 0;
         List<DetallePedidosEntity> detalles = new ArrayList<>();
-        for (ProductoEntity aux : p) {
-            DetallePedidosEntity detalle = new DetallePedidosEntity();
-            detalle.setNumDetalle(cantidad.get(contador));
-            detalle.setPedido(num);
-            detalle.setProducto(aux.getIdProducto());
+        DetallePedidosEntity detalle;
+        for (ProductoEntity producto : productos) {
+            detalle = new DetallePedidosEntity();
+            detalle.setNumDetalle(numDetalles.get(contador));
+            detalle.setPedido(idPedido);
+            detalle.setProducto(producto.getIdProducto());
             contador++;
             detalles.add(detalle);
         }
-        guardarEnDB(pedido,detalles);
+        return detalles;
     }
+
     private void guardarEnDB(PedidoEntity pedido, List<DetallePedidosEntity> detalles){
         EntityManager entityManager = DBConnection.entityManager;
         EntityTransaction transaction = null;

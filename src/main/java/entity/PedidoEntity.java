@@ -154,13 +154,13 @@ public class PedidoEntity {
                 + "</tr>";
 
         TypedQuery<ProductoEntity> productos = DBConnection.entityManager.createNamedQuery("Productos.allResults", ProductoEntity.class);
-        List<ProductoEntity> listaProductos = productos.getResultList();
+        List<ProductoEntity> listaProductosSeleccionados = new ArrayList<>();
         List<Integer> cantidades = new ArrayList<>();
 
         int i = 0;
         double total = 0;
 
-        for(ProductoEntity p : listaProductos){
+        for(ProductoEntity p : productos.getResultList()){
             String aux = request.getParameter("item"+i);
             if(aux != null){
                 int cantidad = 1;
@@ -168,6 +168,7 @@ public class PedidoEntity {
                     cantidad = Integer.parseInt(request.getParameter("cantidad" + i));
                 }
 
+                listaProductosSeleccionados.add(p);
                 cantidades.add(cantidad);
                 cadena += formarItems(p, cantidad);
                 total += p.getPrecio().doubleValue() * cantidad;
@@ -181,7 +182,7 @@ public class PedidoEntity {
         cadena += "</table> <div/>";
 
         HistorialPedidos h = new HistorialPedidos();
-        h.agregarPedido(generarCodigoTicket(),cantidades, listaProductos);
+        h.agregarPedido(generarCodigoTicket(),cantidades, listaProductosSeleccionados);
         return cadena;
     }
 

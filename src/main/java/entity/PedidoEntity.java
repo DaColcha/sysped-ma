@@ -110,8 +110,7 @@ public class PedidoEntity {
 
     // Método para obtener la hora hasta minutos
     public Time obtenerHoraActual() {
-        java.util.Date utilDate = new java.util.Date();
-        return new Time(utilDate.getTime());
+        return new Time(new java.util.Date().getTime());
     }
 
     @Override
@@ -143,15 +142,7 @@ public class PedidoEntity {
 
     public  String generarTicket(HttpServletRequest request){
 
-        String cadena =  "<div class = \"ticket\"> "+
-                "<div class=\"ticket-header\">Ticket de Compra</div>"+
-                "<div >codigo ticket: "+generarCodigoTicket()+"</div>"+"<table>"
-                + "<tr>"
-                + "<th>Cantidad</th>"
-                + "<th>Nombre</th>"
-                + "<th>Precio Unitario</th>"
-                + "<th>Total</th>"
-                + "</tr>";
+        String cadena =  formarCabeceraTabla();
 
         TypedQuery<ProductoEntity> productos = DBConnection.entityManager.createNamedQuery("Productos.allResults", ProductoEntity.class);
         List<ProductoEntity> listaProductosSeleccionados = new ArrayList<>();
@@ -163,11 +154,7 @@ public class PedidoEntity {
         for(ProductoEntity p : productos.getResultList()){
             String aux = request.getParameter("item"+i);
             if(aux != null){
-                int cantidad = 1;
-                if (!request.getParameter("cantidad"+i).isBlank()) {
-                    cantidad = Integer.parseInt(request.getParameter("cantidad" + i));
-                }
-
+                int cantidad = (!request.getParameter("cantidad" + i).isBlank()) ? Integer.parseInt(request.getParameter("cantidad" + i)) : 1;
                 listaProductosSeleccionados.add(p);
                 cantidades.add(cantidad);
                 cadena += formarItems(p, cantidad);
@@ -175,15 +162,28 @@ public class PedidoEntity {
             }
             i++;
         }
-        cadena += "<tr>"
-                + "<td colspan=\"3\"><strong>Total:</strong></td>"
-                + "<td>$ " + BigDecimal.valueOf(total) + "</td>"
-                + "</tr>";
-        cadena += "</table> <div/>";
-
+        cadena += formarPieTabla(total);
         HistorialPedidos h = new HistorialPedidos();
         h.agregarPedido(generarCodigoTicket(),cantidades, listaProductosSeleccionados);
         return cadena;
     }
-
+    private String formarCabeceraTabla(){
+        return "<div class = \"ticket\"> "+
+                "<div class=\"ticket-header\">Ticket de Compra</div>"+
+                "<div >codigo ticket: "+generarCodigoTicket()+"</div>"+"<table>"
+                + "<tr>"
+                + "<th>Cantidad</th>"
+                + "<th>Nombre</th>"
+                + "<th>Precio Unitario</th>"
+                + "<th>Total</th>"
+                + "</tr>";
+    }
+    private  String formarPieTabla(double total) {
+        return "<tr>"
+                + "<td colspan=\"3\"><strong>Total:</strong></td>"
+                + "<td>$ " + BigDecimal.valueOf(total) + "</td>"
+                + "</tr>" +
+                "</table> " +
+                "<div/>";
+    }
 }

@@ -23,6 +23,9 @@ public class AppsServlet extends HttpServlet {
             try  {
                 Menu menu = new Menu();
                 request.setAttribute("menu", menu.mostrarMenu());
+
+                FacturaEntity factura = new FacturaEntity();
+                request.setAttribute("generarFactura", factura.generarFactura());
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {

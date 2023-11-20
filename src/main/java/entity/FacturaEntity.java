@@ -111,7 +111,16 @@ public class FacturaEntity {
                 + "<input type=\"text\" name=\"emailCliente\" </div>"
 
                 + "<div><label for = \"telefonoCliente\">Teléfono: </label>"
-                + "<input type=\"text\" name=\"telefonoCliente\" </div>";
+                + "<input type=\"text\" name=\"telefonoCliente\" </div>"
+
+                + "<div><label for = \"codigoTicket\">Código del ticket del pedido: </label>"
+                + "<input type=\"text\" name=\"codigoTicket\" </div>"
+
+                + "<div><label for = \"metodoPago\">Selecciona la forma de pago: </label>"
+                + "<select name=\"metodoPago\">"
+                + "<option value=\"efectivo\">Efectivo</option>"
+                + "<option value=\"tarjeta\">Tarjeta</option> </select> </div>";
+
         return salida;
     }
 

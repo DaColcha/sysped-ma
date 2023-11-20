@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Facturación del Pedido</h1>
-    <form action="/" method="post" >
+    <form action="factura.jsp" method="post" >
         ${generarFactura}
         <div><button type="submit">Mostrar factura</button></div>
     </form>

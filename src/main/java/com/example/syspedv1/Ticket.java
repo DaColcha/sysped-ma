@@ -89,8 +89,11 @@ public class Ticket {
         return "<tr>"
                 + "<td colspan=\"3\"><strong>Total:</strong></td>"
                 + "<td>$ " + BigDecimal.valueOf(total) + "</td>"
-                + "</tr>" +
-                "</table> " +
-                "<div/>";
+                + "</tr>"
+                + "</table> "
+                + "<div/>"
+                + "<form action=\"factura.jsp\" method=\"post\">"
+                + "<div class=\"contenedor\"><button type=\"submit\">Generar factura</button></div>
+                + "</form>";
     }
 }

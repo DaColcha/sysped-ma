@@ -14,10 +14,13 @@ public class Ticket {
     private List<ProductoEntity> productosSeleccionados;
     private List<Integer> cantidades;
 
+    private HistorialPedidos historial;
+
     public Ticket() {
         this.subtotal = 0;
         this.productosSeleccionados= new ArrayList<>();
         this.cantidades = new ArrayList<>();
+        this.historial = new HistorialPedidos();
     }
 
     private String formarItems(ProductoEntity p, int cantidad){
@@ -29,16 +32,15 @@ public class Ticket {
                 + "</tr>";
     }
     private String generarCodigoTicket(){
-        HistorialPedidos h = new HistorialPedidos();
-
         // Formatear el ultimo número como un código con ceros a la izquierda
-        return String.format("%05d", Integer.parseInt(h.ultimoCodigo()) + 1);
+        return String.format("%05d", Integer.parseInt(historial.ultimoCodigo()) + 1);
     }
 
     public  String generarTicket(HttpServletRequest request){
         String cadena =  formarCabeceraTabla();
 
-        TypedQuery<ProductoEntity> productos = DBConnection.entityManager.createNamedQuery("Productos.allResults", ProductoEntity.class);
+        TypedQuery<ProductoEntity> productos = DBConnection.entityManager
+                .createNamedQuery("Productos.allResults", ProductoEntity.class);
 
         int i = 0;
         for(ProductoEntity p : productos.getResultList()){
@@ -56,8 +58,7 @@ public class Ticket {
 
         this.calcularSubtotal();
         cadena += formarPieTabla(this.subtotal);
-        HistorialPedidos h = new HistorialPedidos();
-        h.agregarPedido(generarCodigoTicket(),cantidades, productosSeleccionados);
+        historial.agregarPedido(generarCodigoTicket(),cantidades, productosSeleccionados);
         return cadena;
     }
 

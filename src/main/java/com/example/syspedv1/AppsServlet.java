@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "menu", urlPatterns = {"","/"})
+@WebServlet(name = "menu", urlPatterns = {"","/","/factura"})
 
 public class AppsServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

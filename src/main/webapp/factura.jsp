@@ -9,8 +9,5 @@
         ${generarFactura}
         <div><button type="submit">Mostrar factura</button></div>
     </form>
-    <div>
-        ${factura}
-    </div>
 </body>
 </html>

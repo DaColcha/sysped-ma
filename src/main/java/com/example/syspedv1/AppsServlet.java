@@ -31,8 +31,8 @@ public class AppsServlet extends HttpServlet {
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Menu menu = new Menu();
-        PedidoEntity pedido = new PedidoEntity();
-        request.setAttribute("ticket", pedido.generarTicket(request));
+        Ticket ticket = new Ticket();
+        request.setAttribute("ticket", ticket.generarTicket(request));
         request.setAttribute("menu", menu.mostrarMenu());
         getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 

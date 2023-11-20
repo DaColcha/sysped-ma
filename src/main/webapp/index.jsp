@@ -71,8 +71,6 @@
             font-size: 24px;
             margin-bottom: 10px;
         }
-
-
     </style>
 </head>
 <body>
@@ -80,8 +78,6 @@
     ${menu}
     <div class="contenedor"><button type="submit">Realizar tictek</button></div>
 </form>
-<div>
-    ${ticket}
-</div>
+
 </body>
 </html>

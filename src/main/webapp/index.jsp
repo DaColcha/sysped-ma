@@ -80,6 +80,8 @@
     ${menu}
     <div class="contenedor"><button type="submit">Realizar tictek</button></div>
 </form>
-<div>${ticket}</div>
+<div>
+    ${ticket}
+</div>
 </body>
 </html>

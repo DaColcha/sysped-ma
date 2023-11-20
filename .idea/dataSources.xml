@@ -8,5 +8,27 @@
       <jdbc-url>jdbc:mysql://localhost:3306/sysped</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="default/OpenJPA" uuid="56a180ad-226b-4b07-ad20-cfe5b6a07c6d">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>OpenJPA
+
+D:/UNIVERSIDAD/SEXTO SEMESTRE/METODOLOGIAS AGILES/Proyectos/Proyecto_Tareas_PrimerBimestre/sysped-ma/src/main/resources/META-INF/persistence.xml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/sysped</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="default/TopLink" uuid="c9d92e93-2bce-4c2a-aa78-0c0ae92e2850">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>TopLink
+
+D:/UNIVERSIDAD/SEXTO SEMESTRE/METODOLOGIAS AGILES/Proyectos/Proyecto_Tareas_PrimerBimestre/sysped-ma/src/main/resources/META-INF/persistence.xml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/sysped</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

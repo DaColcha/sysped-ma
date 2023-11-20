@@ -1,5 +1,6 @@
 package com.example.syspedv1;
 
+import entity.FacturaEntity;
 import entity.PedidoEntity;
 import entity.ProductoEntity;
 import jakarta.persistence.TypedQuery;
@@ -34,6 +35,9 @@ public class AppsServlet extends HttpServlet {
         Ticket ticket = new Ticket();
         request.setAttribute("ticket", ticket.generarTicket(request));
         request.setAttribute("menu", menu.mostrarMenu());
+
+        FacturaEntity factura = new FacturaEntity();
+        request.setAttribute("generarFactura", factura.generarFactura());
         getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 
     }

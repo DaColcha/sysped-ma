@@ -4,6 +4,13 @@
     <title>Factura Sysped</title>
 </head>
 <body>
-PAgina Factura JSP
+    <h1>Facturación del Pedido</h1>
+    <form action="/" method="post" >
+        ${generarFactura}
+        <div><button type="submit">Mostrar factura</button></div>
+    </form>
+    <div>
+        ${factura}
+    </div>
 </body>
 </html>

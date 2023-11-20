@@ -97,6 +97,24 @@ public class FacturaEntity {
         this.pedidoByPedido = pedidoByPedido;
     }
 
+    public String generarFactura() {
+        String salida = "<div><label for = \"cedulaCliente\">Cedula: </label>"
+                + "<input type=\"text\" name=\"cedulaCliente\" </div>"
+
+                + "<div><label for = \"nombreCliente\">Nombre: </label>"
+                + "<input type=\"text\" name=\"nombreCliente\" </div>"
+
+                + "<div><label for = \"apellidoCliente\">Apellido: </label>"
+                + "<input type=\"text\" name=\"apellidoCliente\" </div>"
+
+                + "<div><label for = \"emailCliente\">Correo Eléctronico: </label>"
+                + "<input type=\"text\" name=\"emailCliente\" </div>"
+
+                + "<div><label for = \"telefonoCliente\">Teléfono: </label>"
+                + "<input type=\"text\" name=\"telefonoCliente\" </div>";
+        return salida;
+    }
+
     @Override
     public String toString() {
         return "FacturaEntity{" +

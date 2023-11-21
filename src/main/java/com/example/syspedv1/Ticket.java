@@ -13,14 +13,15 @@ public class Ticket {
     private double subtotal;
     private List<ProductoEntity> productosSeleccionados;
     private List<Integer> cantidades;
-
     private HistorialPedidos historial;
+    private Menu menu;
 
     public Ticket() {
         this.subtotal = 0;
         this.productosSeleccionados= new ArrayList<>();
         this.cantidades = new ArrayList<>();
         this.historial = new HistorialPedidos();
+        this.menu = new Menu();
     }
 
     private String formarItems(ProductoEntity p, int cantidad){
@@ -39,14 +40,12 @@ public class Ticket {
     public  String generarTicket(HttpServletRequest request){
         String cadena =  formarCabeceraTabla();
 
-        TypedQuery<ProductoEntity> productos = DBConnection.entityManager
-                .createNamedQuery("Productos.allResults", ProductoEntity.class);
-
         int i = 0;
-        for(ProductoEntity p : productos.getResultList()){
+        for(ProductoEntity p : this.menu.obtenerMenu()){
             String aux = request.getParameter("item"+i);
             if(aux != null){
-                int cantidad = (!request.getParameter("cantidad" + i).isBlank()) ? Integer.parseInt(request.getParameter("cantidad" + i)) : 1;
+                int cantidad = (!request.getParameter("cantidad" + i).isBlank()) ?
+                        Integer.parseInt(request.getParameter("cantidad" + i)) : 1;
 
                 this.productosSeleccionados.add(p);
                 this.cantidades.add(cantidad);

@@ -10,8 +10,12 @@ public class Menu {
     public Menu() {
         this.productos = this.obtenerMenu();
     }
-    private List<ProductoEntity> obtenerMenu() {
-        return (DBConnection.entityManager.createNamedQuery("Productos.allResults",ProductoEntity.class).getResultList());
+    public List<ProductoEntity> obtenerMenu() {
+        return (
+                DBConnection.entityManager.createNamedQuery(
+                "Productos.allResults",
+                ProductoEntity.class).getResultList()
+        );
     }
     public String mostrarMenu() {
         String salida = "<div class=\"grid-container\">";

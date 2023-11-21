@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "menu", urlPatterns = {"","/","/factura"})
+@WebServlet(name = "menu", urlPatterns = {"","/"})
 
 public class AppsServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -24,8 +24,6 @@ public class AppsServlet extends HttpServlet {
                 Menu menu = new Menu();
                 request.setAttribute("menu", menu.mostrarMenu());
 
-                FacturaEntity factura = new FacturaEntity();
-                request.setAttribute("generarFactura", factura.generarFactura());
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -41,6 +39,7 @@ public class AppsServlet extends HttpServlet {
 
         FacturaEntity factura = new FacturaEntity();
         request.setAttribute("generarFactura", factura.generarFactura());
+
         getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 
     }

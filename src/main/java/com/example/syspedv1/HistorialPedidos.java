@@ -76,17 +76,14 @@ public class HistorialPedidos {
 
     public String ultimoCodigo(){
         try  {
-            TypedQuery<PedidoEntity> pedidoMax = DBConnection.entityManager.createNamedQuery("Pedido.ultimo", PedidoEntity.class);
-            for(PedidoEntity p : pedidoMax.getResultList()){
-                return p.getIdPedido();
-            }
+            List<PedidoEntity> pedidosOrdenDescendente = DBConnection.entityManager.createNamedQuery
+                    ("Pedido.ultimo", PedidoEntity.class).getResultList();
+            return pedidosOrdenDescendente.get(0).getIdPedido();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
         }
         return "00000";
     }
-
-
 
 }

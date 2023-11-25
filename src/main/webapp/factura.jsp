@@ -3,6 +3,9 @@
 <html>
 <head>
     <title>Factura Sysped</title>
+    <style>
+
+    </style>
 </head>
 <body>
     <h1>Facturación del Pedido</h1>
@@ -10,5 +13,8 @@
         ${generarFactura}
         <div><button type="submit">Mostrar factura</button></div>
     </form>
+    <div>
+        ${mostrarFactura}
+    </div>
 </body>
 </html>

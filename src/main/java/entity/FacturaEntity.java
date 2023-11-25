@@ -1,6 +1,7 @@
 package entity;
 
 import jakarta.persistence.*;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Entity
 @Table(name = "factura", schema = "sysped", catalog = "")
@@ -108,7 +109,7 @@ public class FacturaEntity {
                 + "<input type=\"text\" name=\"apellidoCliente\" id=\"apellidoCliente\"> </div>"
 
                 + "<div><label for = \"emailCliente\">Correo Eléctronico: </label>"
-                + "<input type=\"text\" name=\"emailCliente\" id=\"emailCliente> </div>"
+                + "<input type=\"text\" name=\"emailCliente\" id=\"emailCliente\"> </div>"
 
                 + "<div><label for = \"telefonoCliente\">Teléfono: </label>"
                 + "<input type=\"text\" name=\"telefonoCliente\" id=\"telefonoCliente\"> </div>"
@@ -122,6 +123,43 @@ public class FacturaEntity {
                 + "<option value=\"tarjeta\">Tarjeta</option> </select> </div>";
 
         return salida;
+    }
+
+    public String mostrarFactura(HttpServletRequest request){
+        String resultado = "<div>" +
+                "<br><div><h2>Factura Nº "+ generarCodigoFactura("0") + "</h2></div>"
+                + "<table border = \"1\">"
+                + "<tr>"
+                + "<td><strong> Cédula </strong></td>" + "<td>" + request.getParameter("cedulaCliente") + "</td>"
+                + "</tr>"
+                + "<tr>"
+                + "<td><strong> Nombres </strong></td>" + "<td>" + request.getParameter("nombreCliente") + " " + request.getParameter("apellidoCliente")+ "</td>"
+                + "</tr>"
+                + "<tr>"
+                + "<td><strong> Correo electrónico </strong></td>" + "<td>" + request.getParameter("emailCliente") + "</td>"
+                + "</tr>"
+                + "<tr>"
+                + "<td><strong> Teléfono </strong></td>" + "<td>" + request.getParameter("telefonoCliente") + "</td>"
+                + "</tr>"
+                + "</table>"
+                + "</div>";
+
+        return resultado;
+    }
+
+    private String generarCabeceraFactura() {
+        return "<div>" +
+                "<br><div><h2>Factura Nº "+ generarCodigoFactura("0") + "</h2></div>"+"<table>"
+                + "<tr>"
+                + "<th>Cantidad</th>"
+                + "<th>Nombre</th>"
+                + "<th>Precio Unitario</th>"
+                + "<th>Total</th>"
+                + "</tr>";
+    }
+
+    private String generarCodigoFactura(String ultimoCodigo) {
+        return String.format("%05d", Integer.parseInt(ultimoCodigo) + 1);
     }
 
     @Override

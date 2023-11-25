@@ -27,9 +27,8 @@ public class FacturaServlet extends HttpServlet {
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         FacturaEntity factura = new FacturaEntity();
-
         request.setAttribute("generarFactura", factura.generarFactura());
-
+        request.setAttribute("mostrarFactura", factura.mostrarFactura(request));
 
         getServletContext().getRequestDispatcher("/factura.jsp").forward(request, response);
 

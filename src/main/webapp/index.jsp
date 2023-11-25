@@ -76,7 +76,7 @@
 <body>
 <form action="/" method="post" >
     ${menu}
-    <div class="contenedor"><button type="submit">Realizar tictek</button></div>
+    <div class="contenedor"><button type="submit">Realizar ticket</button></div>
 </form>
 <div>
     ${ticket}

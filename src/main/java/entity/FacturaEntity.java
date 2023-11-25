@@ -99,25 +99,25 @@ public class FacturaEntity {
 
     public String generarFactura() {
         String salida = "<div><label for = \"cedulaCliente\">Cedula: </label>"
-                + "<input type=\"text\" name=\"cedulaCliente\" </div>"
+                + "<input type=\"text\" name=\"cedulaCliente\" id=\"cedulaCliente\"> </div>"
 
                 + "<div><label for = \"nombreCliente\">Nombre: </label>"
-                + "<input type=\"text\" name=\"nombreCliente\" </div>"
+                + "<input type=\"text\" name=\"nombreCliente\" id=\"nombreCliente\"> </div>"
 
                 + "<div><label for = \"apellidoCliente\">Apellido: </label>"
-                + "<input type=\"text\" name=\"apellidoCliente\" </div>"
+                + "<input type=\"text\" name=\"apellidoCliente\" id=\"apellidoCliente\"> </div>"
 
                 + "<div><label for = \"emailCliente\">Correo Eléctronico: </label>"
-                + "<input type=\"text\" name=\"emailCliente\" </div>"
+                + "<input type=\"text\" name=\"emailCliente\" id=\"emailCliente> </div>"
 
                 + "<div><label for = \"telefonoCliente\">Teléfono: </label>"
-                + "<input type=\"text\" name=\"telefonoCliente\" </div>"
+                + "<input type=\"text\" name=\"telefonoCliente\" id=\"telefonoCliente\"> </div>"
 
                 + "<div><label for = \"codigoTicket\">Código del ticket del pedido: </label>"
-                + "<input type=\"text\" name=\"codigoTicket\" </div>"
+                + "<input type=\"text\" name=\"codigoTicket\" id=\"codigoTicket\"> </div>"
 
                 + "<div><label for = \"metodoPago\">Selecciona la forma de pago: </label>"
-                + "<select name=\"metodoPago\">"
+                + "<select name=\"metodoPago\" id=\"metodoPago\">"
                 + "<option value=\"efectivo\">Efectivo</option>"
                 + "<option value=\"tarjeta\">Tarjeta</option> </select> </div>";
 

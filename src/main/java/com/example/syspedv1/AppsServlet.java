@@ -37,8 +37,6 @@ public class AppsServlet extends HttpServlet {
         request.setAttribute("ticket", ticket.generarTicket(request));
         request.setAttribute("menu", menu.mostrarMenu());
 
-        FacturaEntity factura = new FacturaEntity();
-        request.setAttribute("generarFactura", factura.generarFactura());
 
         getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 

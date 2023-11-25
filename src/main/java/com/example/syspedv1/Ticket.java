@@ -91,7 +91,7 @@ public class Ticket {
                 + "</tr>"
                 + "</table> "
                 + "<div/>"
-                + "<form action=\"factura.jsp\" method=\"post\">"
+                + "<form action=\"/factura\" method=\"get\">"
                 + "<div class=\"contenedor\"><button type=\"submit\">Generar factura</button></div>"
                 + "</form>";
     }

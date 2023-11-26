@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "detalle_pedidos", schema = "sysped", catalog = "")
 @NamedQuery(name = "Pedido.ultimo", query = "SELECT p FROM  PedidoEntity p ORDER BY idPedido DESC LIMIT 1")
+@NamedQuery(name = "DetallePedido.byIdDetalle", query = "SELECT dp FROM  DetallePedidosEntity dp WHERE dp.pedido = ?1")
 @IdClass(DetallePedidosEntityPK.class)
 public class DetallePedidosEntity {
     @Id

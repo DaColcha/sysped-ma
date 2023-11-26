@@ -14,6 +14,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "pedido", schema = "sysped", catalog = "")
+@NamedQuery(name = "Pedido.byIdPedido", query = "SELECT p FROM  PedidoEntity p WHERE p.idPedido=?1")
 public class PedidoEntity {
     @Id
     @Column(name = "idPedido")

@@ -1,7 +1,12 @@
 package entity;
 
+import com.example.syspedv1.DBConnection;
 import jakarta.persistence.*;
 import jakarta.servlet.http.HttpServletRequest;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "factura", schema = "sysped", catalog = "")
@@ -147,7 +152,19 @@ public class FacturaEntity {
         return resultado;
     }
 
-    private String generarCabeceraFactura() {
+    private BigDecimal calcularSubtotal(List<DetallePedidosEntity> detallesPedido) {
+        BigDecimal resultado = new BigDecimal("0");
+        String idProducto;
+        ProductoEntity producto;
+        for(DetallePedidosEntity detalles : detallesPedido){
+            idProducto = detalles.getProducto();
+            producto = obtenerProducto(idProducto);
+            resultado = resultado.add(producto.getPrecio().multiply(BigDecimal.valueOf(detalles.getNumDetalle())));
+        }
+        return resultado;
+    }
+
+    /*private String generarCabeceraFactura() {
         return "<div>" +
                 "<br><div><h2>Factura Nº "+ generarCodigoFactura("0") + "</h2></div>"+"<table>"
                 + "<tr>"
@@ -156,10 +173,38 @@ public class FacturaEntity {
                 + "<th>Precio Unitario</th>"
                 + "<th>Total</th>"
                 + "</tr>";
-    }
+    }*/
 
     private String generarCodigoFactura(String ultimoCodigo) {
         return String.format("%05d", Integer.parseInt(ultimoCodigo) + 1);
+    }
+
+    private ProductoEntity obtenerProducto(String codigoProducto) {
+        ProductoEntity producto = new ProductoEntity();
+        try  {
+            TypedQuery<ProductoEntity> productoById=  DBConnection.entityManager.createNamedQuery
+                    ("Producto.byIdProdcuto", ProductoEntity.class);
+            productoById.setParameter(1, codigoProducto);
+            producto = productoById.getResultList().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
+        return producto;
+    }
+
+    private List<DetallePedidosEntity> obtenerDetallesPedido(String codigoPedido) {
+        List<DetallePedidosEntity> detallesPedido = new ArrayList<>();
+        try  {
+            TypedQuery<DetallePedidosEntity> detallePedidobyId =  DBConnection.entityManager.createNamedQuery
+                    ("DetallePedido.byIdDetalle", DetallePedidosEntity.class);
+            detallePedidobyId.setParameter(1, codigoPedido);
+            detallesPedido = detallePedidobyId.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
+        return detallesPedido;
     }
 
     @Override

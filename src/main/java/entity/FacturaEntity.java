@@ -152,12 +152,14 @@ public class FacturaEntity {
         return resultado;
     }
 
-    private BigDecimal calcularSubtotal(List<ProductoEntity> productos, List<Integer> cantidades) {
+    private BigDecimal calcularSubtotal(List<DetallePedidosEntity> detallesPedido) {
         BigDecimal resultado = new BigDecimal("0");
-        int cont = 0;
-        for(ProductoEntity producto : productos){
-            resultado = resultado.add(producto.getPrecio().multiply(BigDecimal.valueOf(cantidades.get(cont))));
-            cont++;
+        String idProducto;
+        ProductoEntity producto;
+        for(DetallePedidosEntity detalles : detallesPedido){
+            idProducto = detalles.getProducto();
+            producto = obtenerProducto(idProducto);
+            resultado = resultado.add(producto.getPrecio().multiply(BigDecimal.valueOf(detalles.getNumDetalle())));
         }
         return resultado;
     }
@@ -176,6 +178,34 @@ public class FacturaEntity {
 
     private String generarCodigoFactura(String ultimoCodigo) {
         return String.format("%05d", Integer.parseInt(ultimoCodigo) + 1);
+    }
+
+    private ProductoEntity obtenerProducto(String codigoProducto) {
+        ProductoEntity producto = new ProductoEntity();
+        try  {
+            TypedQuery<ProductoEntity> productoById=  DBConnection.entityManager.createNamedQuery
+                    ("Producto.byIdProdcuto", ProductoEntity.class);
+            productoById.setParameter(1, codigoProducto);
+            producto = productoById.getResultList().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
+        return producto;
+    }
+
+    private List<DetallePedidosEntity> obtenerDetallesPedido(String codigoPedido) {
+        List<DetallePedidosEntity> detallesPedido = new ArrayList<>();
+        try  {
+            TypedQuery<DetallePedidosEntity> detallePedidobyId =  DBConnection.entityManager.createNamedQuery
+                    ("DetallePedido.byIdDetalle", DetallePedidosEntity.class);
+            detallePedidobyId.setParameter(1, codigoPedido);
+            detallesPedido = detallePedidobyId.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
+        return detallesPedido;
     }
 
     @Override

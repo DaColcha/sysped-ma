@@ -164,6 +164,18 @@ public class FacturaEntity {
         return resultado;
     }
 
+    private BigDecimal calcularIVA(BigDecimal subtotal) {
+        BigDecimal resultado = new BigDecimal("0");
+        resultado = subtotal.multiply(BigDecimal.valueOf(0.12));
+        return resultado;
+    }
+
+    private BigDecimal calcularTotal(BigDecimal subtotal, BigDecimal impuesto) {
+        BigDecimal resultado = new BigDecimal("0");
+        resultado = subtotal.add(impuesto);
+        return resultado;
+    }
+
     /*private String generarCabeceraFactura() {
         return "<div>" +
                 "<br><div><h2>Factura Nº "+ generarCodigoFactura("0") + "</h2></div>"+"<table>"

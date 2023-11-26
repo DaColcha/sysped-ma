@@ -176,17 +176,6 @@ public class FacturaEntity {
         return resultado;
     }
 
-    /*private String generarCabeceraFactura() {
-        return "<div>" +
-                "<br><div><h2>Factura Nº "+ generarCodigoFactura("0") + "</h2></div>"+"<table>"
-                + "<tr>"
-                + "<th>Cantidad</th>"
-                + "<th>Nombre</th>"
-                + "<th>Precio Unitario</th>"
-                + "<th>Total</th>"
-                + "</tr>";
-    }*/
-
     private String generarCodigoFactura(String ultimoCodigo) {
         return String.format("%05d", Integer.parseInt(ultimoCodigo) + 1);
     }

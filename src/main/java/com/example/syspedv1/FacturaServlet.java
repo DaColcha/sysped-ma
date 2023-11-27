@@ -16,7 +16,7 @@ public class FacturaServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         try  {
-            FacturaEntity factura = new FacturaEntity();
+            FacturaController factura = new FacturaController();
             request.setAttribute("generarFactura", factura.generarFactura());
         } catch (Exception e) {
             e.printStackTrace();
@@ -26,7 +26,7 @@ public class FacturaServlet extends HttpServlet {
 
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        FacturaEntity factura = new FacturaEntity();
+        FacturaController factura = new FacturaController();
         request.setAttribute("generarFactura", factura.generarFactura());
         request.setAttribute("mostrarFactura", factura.mostrarFactura(request));
 

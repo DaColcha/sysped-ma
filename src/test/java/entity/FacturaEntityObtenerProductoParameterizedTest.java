@@ -1,5 +1,6 @@
 package entity;
 
+import com.example.syspedv1.FacturaController;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,11 +13,11 @@ import static org.junit.Assert.assertEquals;
 @RunWith(value = Parameterized.class)
 public class FacturaEntityObtenerProductoParameterizedTest {
     private String nombreProductoEsperado, codigoProducto;
-    private static FacturaEntity factura;
+    private static FacturaController factura;
 
     @BeforeClass
     public static void setUpClass() {
-        factura = new FacturaEntity();
+        factura = new FacturaController();
     }
 
     public FacturaEntityObtenerProductoParameterizedTest(String nombreProductoEsperado, String codigoProducto) {

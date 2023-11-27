@@ -17,6 +17,10 @@ public class FacturaEntityObtenerProductoParameterizedTest {
     @BeforeClass
     public static void setUpClass() {
         factura = new FacturaEntity();
+
+        // Para establecer una conexión inicial a la BD, y que el tiempo
+        // de conexión no influya en las pruebas
+        factura.obtenerProducto("001");
     }
 
     public FacturaEntityObtenerProductoParameterizedTest(String nombreProductoEsperado, String codigoProducto) {
@@ -35,7 +39,7 @@ public class FacturaEntityObtenerProductoParameterizedTest {
         return pruebas;
     }
 
-    @Test
+    @Test(timeout = 25)
     public void given_parameters_when_obtain_product_then_ok() {
         assertEquals(this.nombreProductoEsperado, factura.obtenerProducto(this.codigoProducto).getNombreProducto());
     }

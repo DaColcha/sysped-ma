@@ -152,7 +152,7 @@ public class FacturaEntity {
 
 
 
-    private BigDecimal calcularSubtotal(List<DetallePedidosEntity> detallesPedido) {
+    public BigDecimal calcularSubtotal(List<DetallePedidosEntity> detallesPedido) {
         BigDecimal resultado = new BigDecimal("0");
         String idProducto;
         ProductoEntity producto;
@@ -176,11 +176,11 @@ public class FacturaEntity {
         return resultado;
     }
 
-    private String generarCodigoFactura(String ultimoCodigo) {
+    public String generarCodigoFactura(String ultimoCodigo) {
         return String.format("%05d", Integer.parseInt(ultimoCodigo) + 1);
     }
 
-    private ProductoEntity obtenerProducto(String codigoProducto) {
+    public ProductoEntity obtenerProducto(String codigoProducto) {
         ProductoEntity producto = new ProductoEntity();
         try  {
             TypedQuery<ProductoEntity> productoById=  DBConnection.entityManager.createNamedQuery

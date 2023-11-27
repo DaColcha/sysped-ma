@@ -6,6 +6,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "cliente", schema = "sysped", catalog = "")
+@NamedQuery(name = "Cliente.byIdCliente", query = "SELECT c FROM  ClienteEntity c WHERE c.cedula = ?1")
 public class ClienteEntity {
     @Id
     @Column(name = "cedula")

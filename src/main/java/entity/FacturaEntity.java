@@ -143,14 +143,14 @@ public class FacturaEntity {
                 + "<tr>"
                 + "<td><strong> Correo electrónico </strong></td>" + "<td>" + request.getParameter("emailCliente") + "</td>"
                 + "</tr>"
-                + "<tr>"
                 + "<td><strong> Teléfono </strong></td>" + "<td>" + request.getParameter("telefonoCliente") + "</td>"
                 + "</tr>"
                 + "</table>"
                 + "</div>";
-
         return resultado;
     }
+
+
 
     private BigDecimal calcularSubtotal(List<DetallePedidosEntity> detallesPedido) {
         BigDecimal resultado = new BigDecimal("0");

@@ -26,15 +26,15 @@ public class FacturaController {
         return resultado;
     }
 
-    private BigDecimal calcularPrecio(ProductoEntity producto, DetallePedidosEntity detallePedido){
+    public BigDecimal calcularPrecio(ProductoEntity producto, DetallePedidosEntity detallePedido){
         return BigDecimal.valueOf(detallePedido.getNumDetalle()).multiply(producto.getPrecio());
     }
 
-    private BigDecimal calcularIVA(BigDecimal subtotal) {
+    public BigDecimal calcularIVA(BigDecimal subtotal) {
         return BigDecimal.valueOf(0.12).multiply(subtotal);
     }
 
-    private BigDecimal calcularTotal(BigDecimal subtotal, BigDecimal impuesto) {
+    public BigDecimal calcularTotal(BigDecimal subtotal, BigDecimal impuesto) {
         return subtotal.add(impuesto);
     }
 

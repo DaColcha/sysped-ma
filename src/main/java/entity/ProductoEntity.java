@@ -107,11 +107,10 @@ public class ProductoEntity {
 
     @Override
     public String toString() {
-        return   "<div>"+
+        return
                 "<img src = \"" + imagen +"\"/>"+
-                "<div class = \"dato\">"+ nombreProducto + "</div>"+
-                "<div class = \"dato\">"+ descripcion + "</div>"+
-                "<div class = \"dato\">$"+ precio + "</div>"+
-                "</div>";
+                "<p class = \"product-name\">"+ nombreProducto + "</p>"+
+                "<p class = \"product-description\">"+ descripcion + "</p>"+
+                "<p class = \"product-price\">$"+ precio + "</p>";
     }
 }

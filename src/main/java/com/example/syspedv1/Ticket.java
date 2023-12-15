@@ -90,9 +90,6 @@ public class Ticket {
                 + "<td>$ " + BigDecimal.valueOf(total) + "</td>"
                 + "</tr>"
                 + "</table> "
-                + "<div/>"
-                + "<form action=\"/factura\" method=\"get\">"
-                + "<div class=\"contenedor\"><button type=\"submit\">Generar factura</button></div>"
-                + "</form>";
+                + "<div/>";
     }
 }

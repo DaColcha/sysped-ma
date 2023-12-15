@@ -14,15 +14,17 @@ public class Menu {
         return (DBConnection.entityManager.createNamedQuery("Productos.allResults", ProductoEntity.class).getResultList());
     }
     public String mostrarMenu() {
-        String salida = "<div class=\"grid-container\">";
+        String salida = "<div class=\"menu-container\">";
         int cont = 0;
 
         for (ProductoEntity producto: this.productos) {
-            salida += "<div class=\"producto\">" +
+            salida += "<div class=\"product\">" +
                     "<label><input type=\"checkbox\" value=\"1\" name=\"" + "item" + cont + "\">" + "Seleccionar" + "</label>";
-            salida += "<p>" + producto.toString() + "</p>";
+            salida += producto.toString();
+            salida += "<div class=\"amount-section\">";
             salida += "<label for=\"" + "cantidad" + cont + "\">Cantidad: </label>\n" +
-                    "<input class = \"dato\"type=\"number\" min= \"0\" name=\"" + "cantidad" + cont + "\">";
+                    "<input class = \"product-amount\"type=\"number\" min= \"0\" name=\"" + "cantidad" + cont + "\">";
+            salida += "</div>";
             salida += "</div>";
             cont++;
         }

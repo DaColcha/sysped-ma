@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Ticket</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script> <%@include file="jss/script.js"%></script>
 </head>
 <body>
     <div>
@@ -9,7 +11,8 @@
         <form action="/factura" method="get">
             <button type="submit">Generar factura</button>
         </form>
-        <a href="/">Regresar al menú</a>
+            <button class="delete-all-button">Regresar</button>
+
     </div>
 </body>
 </html>

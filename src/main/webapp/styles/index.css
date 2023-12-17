@@ -45,7 +45,7 @@ img {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 350px;
+    height: 400px;
     box-shadow: 1px 1px 5px #000;
     background: #FFF;
 }
@@ -109,4 +109,13 @@ img {
 .ticket-button button:hover {
     background-color: #AED0E8;
     transition: 0.5s;
+}
+
+textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 50%;
 }

@@ -22,6 +22,17 @@ public class DetallePedidosEntity {
     @Id
     @Column(name = "producto")
     private String producto;
+    @Column(name = "cantidad")
+    private int cantidad;
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
     @ManyToOne
     @JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false, insertable = false, updatable = false)
     private PedidoEntity pedidoByPedido;

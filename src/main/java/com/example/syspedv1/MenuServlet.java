@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "menu", urlPatterns = {"", "/"})
+@WebServlet(name = "menu", urlPatterns = {"", "/ticket"})
 
 public class MenuServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -27,4 +27,6 @@ public class MenuServlet extends HttpServlet {
         getServletContext().getRequestDispatcher("/ticket.jsp").forward(request, response);
 
     }
+
+
 }

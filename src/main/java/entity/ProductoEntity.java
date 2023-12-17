@@ -113,4 +113,5 @@ public class ProductoEntity {
                 "<p class = \"product-description\">"+ descripcion + "</p>"+
                 "<p class = \"product-price\">$"+ precio + "</p>";
     }
+
 }

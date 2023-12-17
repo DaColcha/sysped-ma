@@ -13,6 +13,7 @@ public class Ticket {
     private double subtotal;
     private List<ProductoEntity> productosSeleccionados;
     private List<Integer> cantidades;
+    private  List<String> detalles;
     private HistorialPedidos historial;
     private Menu menu;
 
@@ -21,6 +22,7 @@ public class Ticket {
         this.productosSeleccionados= new ArrayList<>();
         this.cantidades = new ArrayList<>();
         this.historial = new HistorialPedidos();
+        this.detalles = new ArrayList<>();
         this.menu = new Menu();
     }
 
@@ -44,12 +46,11 @@ public class Ticket {
         for(ProductoEntity p : this.menu.obtenerMenu()){
             String aux = request.getParameter("item"+i);
             if(aux != null){
-                int cantidad = (!request.getParameter("cantidad" + i).isBlank()) ?
-                        Integer.parseInt(request.getParameter("cantidad" + i)) : 1;
-
+                int cantidad = Integer.parseInt(request.getParameter("cantidad" + i));
+                String detalle = request.getParameter("detalle"+i);
                 this.productosSeleccionados.add(p);
                 this.cantidades.add(cantidad);
-
+                this.detalles.add(detalle);
                 cadena += formarItems(p, cantidad);
             }
             i++;
@@ -57,15 +58,15 @@ public class Ticket {
 
         this.calcularSubtotal();
         cadena += formarPieTabla(this.subtotal);
-        historial.agregarPedido(generarCodigoTicket(),cantidades, productosSeleccionados);
+        historial.agregarPedido(generarCodigoTicket(),cantidades, productosSeleccionados,detalles);
         return cadena;
     }
 
     private void calcularSubtotal(){
+        int cont =0;
         for (ProductoEntity p: this.productosSeleccionados){
-            for (Integer i: this.cantidades){
-                subtotal += p.getPrecio().doubleValue() * i;
-            }
+                subtotal += p.getPrecio().doubleValue() * this.cantidades.get(cont);
+                cont++;
         }
     }
 

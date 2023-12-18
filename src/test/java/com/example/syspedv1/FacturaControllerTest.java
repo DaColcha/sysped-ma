@@ -82,7 +82,7 @@ public class FacturaControllerTest {
         assertEquals(expected, actual, 0.01);
     }
 
-    // Prueba de excepcción
+    // Prueba de excepción
     @Test(expected= NullPointerException.class)
     public void given_a_details_list_null_then_exception(){
         System.out.println("Prueba 5");
@@ -95,7 +95,7 @@ public class FacturaControllerTest {
         String expected = "00005";
         assertEquals(expected, factura.generarCodigoFactura("00004"));
     }
-    // Prueba de excepcción
+    // Prueba de excepción
     @Test(expected = NumberFormatException.class)
     public void given_a_string_null_when_generarCodigoFactura_then_exception(){
         System.out.println("Prueba 7");
@@ -108,7 +108,8 @@ public class FacturaControllerTest {
     public void given_subtotal_and_Iva_when_calcularTotal_then_Ok(){
         System.out.println("Prueba 8");
         double expect = 34.23;
-        double resultado = factura.calcularTotal(new BigDecimal("30.56"), new BigDecimal("3.67")).doubleValue();
+        double resultado = factura.calcularTotal(new BigDecimal("30.56"),
+                                                 new BigDecimal("3.67")).doubleValue();
         assertEquals(expect,resultado,0.01);
 
     }

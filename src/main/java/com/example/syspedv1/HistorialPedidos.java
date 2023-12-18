@@ -11,23 +11,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HistorialPedidos {
-    public void agregarPedido(String idPedido, List<Integer> numDetalles, List<ProductoEntity> productos){
+    public void agregarPedido(String idPedido, List<Integer> cantidades, List<ProductoEntity> productos,List<String> Detalles){
         PedidoEntity pedido = new PedidoEntity();
         pedido.setIdPedido(idPedido);
         pedido.setFechaPedido(new java.sql.Date(pedido.obtenerFecha().getTime()));
         pedido.setEstado("Pendiente");
         pedido.setHoraPedido(pedido.obtenerHoraActual());
-        guardarEnDB(pedido, obtenerDetallesPedido(idPedido, numDetalles, productos));
+        guardarEnDB(pedido, obtenerDetallesPedido(idPedido, cantidades, productos,Detalles));
     }
-    private static List<DetallePedidosEntity> obtenerDetallesPedido(String idPedido, List<Integer> numDetalles, List<ProductoEntity> productos) {
+    private static List<DetallePedidosEntity> obtenerDetallesPedido(String idPedido, List<Integer> cantidades, List<ProductoEntity> productos,List<String> Detalles) {
         int contador = 0;
         List<DetallePedidosEntity> detalles = new ArrayList<>();
         DetallePedidosEntity detalle;
         for (ProductoEntity producto : productos) {
             detalle = new DetallePedidosEntity();
-            detalle.setNumDetalle(numDetalles.get(contador));
+            detalle.setCantidad(cantidades.get(contador));
             detalle.setPedido(idPedido);
             detalle.setProducto(producto.getIdProducto());
+            detalle.setEspecificaciones(Detalles.get(contador));
             contador++;
             detalles.add(detalle);
         }

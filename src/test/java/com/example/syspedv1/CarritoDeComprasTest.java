@@ -1,15 +1,16 @@
 package com.example.syspedv1;
 import entity.ProductoEntity;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import java.math.BigDecimal;
 import static org.junit.Assert.*;
 
 public class CarritoDeComprasTest {
-    private CarritoDeCompras carrito;
+    static CarritoDeCompras carrito;
 
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public static void setUp() {
         carrito = new CarritoDeCompras();
     }
 

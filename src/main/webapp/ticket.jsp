@@ -11,8 +11,7 @@
         <form action="/factura" method="get">
             <button type="submit">Generar factura</button>
         </form>
-            <button class="delete-all-button">Regresar</button>
-
+        <button class="delete-all-button">Regresar</button>
     </div>
 </body>
 </html>

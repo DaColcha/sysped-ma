@@ -3,7 +3,6 @@ package com.example.syspedv1;
 import entity.ProductoEntity;
 
 import java.math.BigDecimal;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,58 +57,58 @@ public class CarritoDeProductos {
     }
 
     public String mostrarCarrito(){
-        String tabla = formarCabeceraTabla();
+        String carrito = "";
+        carrito += formarCabeceraTabla();
         int cont =0;
         double total =0.0;
-        tabla += "<tbody>";
+        carrito += "<tbody>";
         for(ProductoEntity p: productos){
-            tabla +=formarFila(p,cantidades.get(cont), detalles.get(cont));
+            carrito += formarFila(p,cantidades.get(cont), detalles.get(cont));
             total += ((p.getPrecio().multiply(BigDecimal.valueOf(cantidades.get(cont))) )).doubleValue();
             cont++;
         }
-        tabla += "</tbody>";
+        carrito += "</tbody>";
         if(productos.size() ==0){
             return "";
         }
-        tabla += formarPieTabla(total);
+        carrito += formarPieTabla(total);
 
-        return tabla;
+        return carrito;
 
     }
+
     private String formarCabeceraTabla(){
-        return "<table id=\"miTabla\">" +"<theader<<tr>"
+        return "<table class=\"cart-table\">" +"<theader<<tr>"
                 + "<th>Codigo</th>"
-                + "<th>imagen</th>"
                 + "<th>Descripcion</th>"
-                + "<th>Cantidad</th>"
+                + "<th>Cantidad 🖊</th>"
                 + "<th>Precio</th>"
                 + "<th>Total</th>"
-                + "<th>Detalle</th>"
+                + "<th>Detalle 🖊</th>"
                 + "</tr>";
     }
     private  String formarPieTabla(double total) {
         return "<tr>"
-                + "<td colspan=\"3\"><strong>Total:</strong></td>"
-                + "<td>$ " + BigDecimal.valueOf(total) + "</td>"
+                + "<td class=\"total\" colspan=\"3\"><strong>Total:</strong></td>"
+                + "<td class=\"total\" colspan=\"2\">$ " + String.format("%.2f", total) + "</td>"
                 + "</tr>"
                 + "</table> "
-                + "<button class=\"delete-all-button\">Eliminar Orden</button>"
-                +"<button class=\"Actualizar\">Actualizar Orden</button>";
+                + "<button class=\"delete-all-button\">Eliminar Orden</button>";
+//                + "<button class=\"Actualizar\">Actualizar Orden</button>";
     }
     private String formarFila(ProductoEntity p, int cantidad,String detalle){
         return "<tr>"
-                + "<td class=\"id\">" + p.getIdProducto()+ "</td>"
-                +"<td><img src = \"" + p.getImagen() +"\"/></td>"
-                + "<td>" + p.getNombreProducto() + "</td>"
-                + "<td contenteditable=\"true\" class=\"numero-celda cantidad\">" + cantidad + "</td>"
-                + "<td>" + p.getPrecio() + "</td>"
-                + "<td>" + p.getPrecio().multiply(BigDecimal.valueOf(cantidad)) + "</td>"
-                + "<td contenteditable=\"true\" class=\"detalle\">" + detalle+ "</td>"
-                + "<td><button class=\"delete-button\" data-id=\"" + p.getIdProducto() + "\">Eliminar</button></td>"
+                + "<td class=\"data\">" + p.getIdProducto()+ "</td>"
+                + "<td class=\"data\">" + p.getNombreProducto() + "</td>"
+                + "<td class=\"data-edit\" contenteditable=\"true\">" + cantidad + "</td>"
+                + "<td class=\"data\">" + p.getPrecio() + "</td>"
+                + "<td class=\"data\">" + p.getPrecio().multiply(BigDecimal.valueOf(cantidad)) + "</td>"
+                + "<td class=\"data-edit detalle\" contenteditable=\"true\">" + detalle+ "</td>"
+                + "<td class=\"data-button\"><button class=\"delete-button\" data-id=\"" + p.getIdProducto() + "\">Eliminar</button></td>"
                 + "</tr>";
     }
 
-    public void eliminarTdo() {
+    public void eliminarTodo() {
         productos.clear();
         cantidades.clear();
         detalles.clear();
@@ -132,8 +131,8 @@ public class CarritoDeProductos {
         int cont =0;
         for (ProductoEntity p: productos){
             salida += "<input type=\"hidden\" value=\"1\" name=\"" + "item" + Integer.parseInt(p.getIdProducto()) + "\">";
-            salida +="<input type=\"hidden\" value=\""+cantidades.get(cont)+"\" name=\"" + "cantidad" + Integer.parseInt(p.getIdProducto()) + "\">";
-            salida +="<input type=\"hidden\" value=\""+detalles.get(cont)+"\" name=\"" + "detalles" + Integer.parseInt(p.getIdProducto()) + "\">";
+            salida += "<input type=\"hidden\" value=\""+cantidades.get(cont)+"\" name=\"" + "cantidad" + Integer.parseInt(p.getIdProducto()) + "\">";
+            salida += "<input type=\"hidden\" value=\""+detalles.get(cont)+"\" name=\"" + "detalles" + Integer.parseInt(p.getIdProducto()) + "\">";
             cont++;
         }
         salida += "<button type=\"submit\">Realizar ticket</button>";

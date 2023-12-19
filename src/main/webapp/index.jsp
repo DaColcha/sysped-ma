@@ -10,22 +10,29 @@
     <script> <%@include file="jss/script.js"%></script>
 </head>
 <body>
-<form action="/carrito" method="get">
+    <form action="/carrito" method="get">
         <div class="header">
             <h1>MENÚ</h1>
-                <div class="ticket-button">
-                    <button type="submit">Mostrar Carrito</button>
-                </div>
+            <div class="cart-button">
+                <button type="submit">Actualizar carrito</button>
+            </div>
+            <label for="cart-button-check">
+                Mostrar carrito
+            </label>
         </div>
-</form>
-
-        ${menu}
-        ${carrito}
-
-<form action="/ticket" method="post">
-        <div class="ticket-button">
-            ${lista}
+    </form>
+    <input type="checkbox" id="cart-button-check">
+    ${menu}
+    <div class="cart-container">
+        <div class="cart">
+            <label class="close-icon" for="cart-button-check">
+                <img alt="close cart icon" src="assets/close-icon.svg">
+            </label>
+            ${carrito}
+            <form class="ticket-button" action="/ticket" method="post">
+                ${lista}
+            </form>
         </div>
-</form>
+    </div>
 </body>
 </html>

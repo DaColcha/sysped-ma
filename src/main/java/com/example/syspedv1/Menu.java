@@ -19,13 +19,13 @@ public class Menu {
 
         for (ProductoEntity producto: this.productos) {
             salida += formarCabecera(producto,cont);
-            salida += "<button class=\"agregar-carrito\">Agregar al Carrito</button>\n";
+            salida += "<button class=\"agregar-carrito\">+</button>\n";
             salida += producto.toString();
             salida += "<div class=\"amount-section\">";
             salida += "<label for=\"" + "cantidad" + cont + "\">Cantidad: </label>\n" +
                     "<input class = \"product-amount\"type=\"number\" min= \"0\" name=\"" + "cantidad" + "\">" ;
             salida += "</div>";
-            salida += "<textarea class = \"product-detalle\" name=\"detalle\" rows=\"4\" cols=\"50\" placeholder=\"Ingresa tu comentario\"></textarea>";
+            salida += "<textarea class = \"product-detalle\" name=\"detalle\" rows=\"4\" cols=\"50\" placeholder=\"Ingresa detalles de tu pedido\"></textarea>";
 
             salida += "</div>";
             cont++;

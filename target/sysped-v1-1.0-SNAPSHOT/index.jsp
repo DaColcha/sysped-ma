@@ -1,5 +1,5 @@
 <%@ page import="com.example.syspedv1.CarritoServlet" %>
-<%@ page import="com.example.syspedv1.CarritoDeProductos" %>
+<%@ page import="com.example.syspedv1.CarritoDeCompras" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>

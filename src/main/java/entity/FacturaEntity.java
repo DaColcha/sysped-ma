@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "factura", schema = "sysped", catalog = "")
+@Table(name = "factura", schema = "sysped_teacherdo", catalog = "")
 public class FacturaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

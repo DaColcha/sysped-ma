@@ -2,9 +2,9 @@ package com.example.syspedv1;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import entity.ProductoEntity;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,9 +17,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import com.google.gson.Gson;
-import jakarta.servlet.http.HttpSession;
 
 @WebServlet(name = "CarritoServlet", urlPatterns = {"/carrito"})
 public class CarritoServlet extends HttpServlet {
@@ -50,14 +47,13 @@ public class CarritoServlet extends HttpServlet {
             request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (Exception e) {
         e.printStackTrace();
-
-    }
+        }
     }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try  {
-            request.setAttribute("carrito", carrito.mostrarCarrito());
             Menu menu = new Menu();
             request.setAttribute("menu", menu.mostrarMenu());
+            request.setAttribute("carrito", carrito.mostrarCarrito());
             request.setAttribute("lista",carrito.crearFormulario());
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,7 +70,7 @@ public class CarritoServlet extends HttpServlet {
         Map<String, Object> productoData = gson.fromJson(json, Map.class);
         String id = (String) productoData.get("id");
         if(id.equals("TODO")){
-            carrito.eliminarTdo();
+            carrito.eliminarTodo();
         }else {
             carrito.eliminarProducto(id);
         }

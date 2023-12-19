@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "menu", urlPatterns = {"", "/ticket"})
+@WebServlet(name = "menu", urlPatterns = {""})
 
 public class MenuServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -21,12 +21,6 @@ public class MenuServlet extends HttpServlet {
                 getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             }
     }
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        Ticket ticket = new Ticket();
-        request.setAttribute("ticket", ticket.generarTicket(request));
-        getServletContext().getRequestDispatcher("/ticket.jsp").forward(request, response);
-
-    }
-
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {}
 
 }

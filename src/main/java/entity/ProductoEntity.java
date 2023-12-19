@@ -28,7 +28,17 @@ public class ProductoEntity {
     @Column(name = "imagen")
     private String imagen;
     @OneToMany(mappedBy = "productoByProducto")
+
     private Collection<DetallePedidosEntity> detallePedidosByIdProducto;
+
+    public ProductoEntity() {
+    }
+
+    public ProductoEntity(String idProducto, String nombreProducto, BigDecimal precio) {
+        this.idProducto = idProducto;
+        this.nombreProducto = nombreProducto;
+        this.precio = precio;
+    }
 
     public String getIdProducto() {
         return idProducto;

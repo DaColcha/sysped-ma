@@ -12,6 +12,7 @@ public class CarritoDeComprasTest {
     @BeforeClass
     public static void setUp() {
         carrito = new CarritoDeCompras();
+        System.out.println("setUp()");
     }
 
     @Test

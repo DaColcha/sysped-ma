@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @WebServlet(name = "CarritoServlet", urlPatterns = {"/carrito"})
 public class CarritoServlet extends HttpServlet {
-    CarritoDeProductos carrito = new CarritoDeProductos();
+    CarritoDeCompras carrito = new CarritoDeCompras();
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
         String json = reader.readLine();;

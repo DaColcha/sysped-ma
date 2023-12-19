@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarritoDeProductos {
+public class CarritoDeCompras {
     private List<ProductoEntity> productos = new ArrayList<>();
     private List<Integer> cantidades = new ArrayList<>();
     private List<String> detalles = new ArrayList<>();
@@ -93,7 +93,7 @@ public class CarritoDeProductos {
                 + "<td class=\"total\" colspan=\"2\">$ " + String.format("%.2f", total) + "</td>"
                 + "</tr>"
                 + "</table> "
-                + "<button class=\"delete-all-button\">Eliminar Orden</button>";
+                + "<button class=\"delete-all-button\">Eliminar orden</button>";
 //                + "<button class=\"Actualizar\">Actualizar Orden</button>";
     }
     private String formarFila(ProductoEntity p, int cantidad,String detalle){

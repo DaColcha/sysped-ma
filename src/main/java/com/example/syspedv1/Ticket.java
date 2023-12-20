@@ -77,7 +77,7 @@ public class Ticket {
     private String formarCabeceraTabla(){
         return "<div class = \"ticket\"> "+
                 "<div class=\"ticket-header\">Ticket de Compra</div>"+
-                "<div >codigo ticket: "+generarCodigoTicket()+"</div>"+"<table border = \"1\"> "
+                "<div >codigo ticket: "+generarCodigoTicket()+"</div>"+"<table> "
                 + "<tr>"
                 + "<th>Cantidad</th>"
                 + "<th>Nombre</th>"

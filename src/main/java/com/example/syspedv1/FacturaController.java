@@ -102,7 +102,7 @@ public class FacturaController {
     public String mostrarFactura(HttpServletRequest request){
         String resultado = "<div>" +
                 "<br><div><h2>Factura Nº "+ generarCodigoFactura("0") + "</h2></div>"
-                + "<br><div><p>Correspondiente al pedido Nº "+ request.getParameter("codigoPedido") + "</p></div>"
+                + "<div><p>Correspondiente al pedido Nº "+ request.getParameter("codigoPedido") + "</p></div>"
                 + "<table border = \"1\">"
                 + "<tr>"
                 + "<td><strong> Cliente </strong></td>" + "<td>" + request.getParameter("nombreCliente") + " " + request.getParameter("apellidoCliente")+ "</td>"

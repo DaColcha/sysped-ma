@@ -29,8 +29,7 @@ public class FacturaServlet extends HttpServlet {
         FacturaController factura = new FacturaController();
         request.setAttribute("generarFactura", factura.generarFactura());
         request.setAttribute("mostrarFactura", factura.mostrarFactura(request));
-        //request.setAttribute("mostrarDetalleFactura", factura.mostrarDetalleFactura(request));
-        request.setAttribute("mostrarCalculoTotal", factura.mostrarCalculoTotal(request));
+        request.setAttribute("mostrarDetalleFactura", factura.mostrarDetalleFactura(request));
         getServletContext().getRequestDispatcher("/factura.jsp").forward(request, response);
 
     }

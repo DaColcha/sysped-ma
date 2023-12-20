@@ -4,7 +4,9 @@
 <head>
     <title>Factura Sysped</title>
     <style>
-
+        .partes-factura{
+            border: 20px;
+        }
     </style>
 </head>
 <body>
@@ -13,14 +15,11 @@
         ${generarFactura}
         <div><button type="submit">Mostrar factura</button></div>
     </form>
-    <div>
+    <div class="partes-factura">
         ${mostrarFactura}
     </div>
-    <div>
+    <div class="partes-factura">
         ${mostrarDetalleFactura}
-    </div>
-    <div>
-        ${mostrarCalculoTotal}
     </div>
 </body>
 </html>

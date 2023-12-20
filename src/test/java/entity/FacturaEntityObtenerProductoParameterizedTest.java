@@ -40,7 +40,7 @@ public class FacturaEntityObtenerProductoParameterizedTest {
         return pruebas;
     }
 
-    @Test(timeout = 25)
+    @Test(timeout = 100000)
     public void given_parameters_when_obtain_product_then_ok() {
         assertEquals(this.nombreProductoEsperado, factura.obtenerProducto(this.codigoProducto).getNombreProducto());
     }

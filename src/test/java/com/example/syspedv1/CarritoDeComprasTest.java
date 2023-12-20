@@ -32,12 +32,12 @@ public class CarritoDeComprasTest {
         assertFalse(carrito.mostrarCarrito().contains("Producto2"));
     }
 
-    @Test(timeout = 100000)
+    @Test
     public void givenUpdatedQuantity_whenActualizar_thenQuantityUpdated() {
         System.out.println("Prueba 3 del Carrito de Compras");
         ProductoEntity producto = new ProductoEntity("003", "Producto3", new BigDecimal("25.00"));
         carrito.agregarProducto(producto, 1, "Detalle");
         carrito.actualizar("003", 5, null);
-        assertTrue(carrito.mostrarCarrito().contains("<td class=\"data-edit\" contenteditable=\"true\">5</td>"));
+        assertTrue(carrito.mostrarCarrito().contains("<td class=\"data-edit cantidad\" contenteditable=\"true\">5</td>"));
     }
 }

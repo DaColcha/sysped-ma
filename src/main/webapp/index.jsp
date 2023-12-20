@@ -28,6 +28,7 @@
             <label class="close-icon" for="cart-button-check">
                 <img alt="close cart icon" src="assets/close-icon.svg">
             </label>
+            <img class="refresh-icon Actualizar" alt="refresh cart icon" src="assets/refresh-icon.svg">
             ${carrito}
             <form class="ticket-button" action="/ticket" method="post">
                 ${lista}

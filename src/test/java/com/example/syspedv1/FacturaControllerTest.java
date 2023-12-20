@@ -30,7 +30,7 @@ public class FacturaControllerTest {
         ProductoEntity producto = new ProductoEntity();
         producto.setPrecio(new BigDecimal("40.00"));
         DetallePedidosEntity detalle = new DetallePedidosEntity();
-        detalle.setNumDetalle(5);
+        detalle.setCantidad(5);
         assertEquals(expect, factura.calcularPrecio(producto, detalle));
 
     }
@@ -46,9 +46,9 @@ public class FacturaControllerTest {
         DetallePedidosEntity detalle1 = new DetallePedidosEntity();
         DetallePedidosEntity detalle2 = new DetallePedidosEntity();
 
-        detalle1.setNumDetalle(2);
+        detalle1.setCantidad(2);
         detalle1.setProducto("001");
-        detalle2.setNumDetalle(3);
+        detalle2.setCantidad(3);
         detalle2.setProducto("002");
 
         detallesPedido.add(detalle1);
@@ -66,7 +66,7 @@ public class FacturaControllerTest {
         // Agregar un gran número de detalles a la factura
         for (int i = 0; i < 100; i++) {
             DetallePedidosEntity detalle = new DetallePedidosEntity();
-            detalle.setNumDetalle(2);
+            detalle.setCantidad(2);
             detalle.setProducto("001");
             detallesPedido.add(detalle);
         }

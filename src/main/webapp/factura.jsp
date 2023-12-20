@@ -16,5 +16,11 @@
     <div>
         ${mostrarFactura}
     </div>
+    <div>
+        ${mostrarDetalleFactura}
+    </div>
+    <div>
+        ${mostrarCalculoTotal}
+    </div>
 </body>
 </html>

@@ -1,0 +1,5 @@
+# Created at 2023-12-19T22:18:51.335
+Boot Manifest-JAR contains absolute paths in classpath 'D:\UNIVERSIDAD\SEXTO SEMESTRE\METODOLOGIAS AGILES\Proyectos\Proyecto_Tareas_PrimerBimestre\sysped-ma\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+

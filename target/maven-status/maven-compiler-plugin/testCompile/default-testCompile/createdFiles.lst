@@ -1,0 +1,5 @@
+entity\FacturaEntityCodigoFacturaParameterizedTest.class
+entity\FacturaEntityObtenerProductoParameterizedTest.class
+com\example\syspedv1\FacturaControllerTest.class
+com\example\syspedv1\ClienteTest.class
+com\example\syspedv1\CarritoDeComprasTest.class

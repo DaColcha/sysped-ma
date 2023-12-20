@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.example.syspedv1.FacturaControllerTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 110.258 s - in com.example.syspedv1.FacturaControllerTest

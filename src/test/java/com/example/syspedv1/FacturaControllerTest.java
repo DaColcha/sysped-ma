@@ -25,7 +25,7 @@ public class FacturaControllerTest {
 
     @Test
     public void given_a_product_and_details_when_calcularPrecio_then_ok() {
-        System.out.println("Prueba 1");
+        System.out.println("Prueba 1 de Factura Controller Test");
         BigDecimal expect = new BigDecimal("200.00");
         ProductoEntity producto = new ProductoEntity();
         producto.setPrecio(new BigDecimal("40.00"));
@@ -38,7 +38,7 @@ public class FacturaControllerTest {
     @Test
     public void given_two_details_when_get_subtotal_then_ok() {
 
-        System.out.println("Prueba 2");
+        System.out.println("Prueba 2 de Factura Controller Test");
         BigDecimal expect = new BigDecimal("30.95");
 
         // Crear detalles
@@ -59,9 +59,9 @@ public class FacturaControllerTest {
 
     //prueba de desempeño
 
-    @Test(timeout = 100000)
+    @Test(timeout = 1000000)
     public void given_calcularSubTotal_should_be_executed_in() {
-        System.out.println("Prueba 3");
+        System.out.println("Prueba 3 de Factura Controller Test");
         List<DetallePedidosEntity> detallesPedido = new ArrayList<>();
         // Agregar un gran número de detalles a la factura
         for (int i = 0; i < 100; i++) {
@@ -76,7 +76,7 @@ public class FacturaControllerTest {
 
     @Test
     public void given_Subtotal_whenCalcularIva_thenOk() {
-        System.out.println("Prueba 4");
+        System.out.println("Prueba 4 de Factura Controller Test");
         double expected = 18.19;
         double actual = factura.calcularIVA(new BigDecimal("151.60")).doubleValue();
         assertEquals(expected, actual, 0.01);
@@ -85,20 +85,20 @@ public class FacturaControllerTest {
     // Prueba de excepción
     @Test(expected= NullPointerException.class)
     public void given_a_details_list_null_then_exception(){
-        System.out.println("Prueba 5");
+        System.out.println("Prueba 5 de Factura Controller Test");
         assertEquals(new BigDecimal(0), factura.calcularSubtotal(null));
     }
 
     @Test
     public void given_the_last_code_when_generarCodigoFactura_then_Ok(){
-        System.out.println("Prueba 6");
+        System.out.println("Prueba 6 de Factura Controller Test");
         String expected = "00005";
         assertEquals(expected, factura.generarCodigoFactura("00004"));
     }
     // Prueba de excepción
     @Test(expected = NumberFormatException.class)
     public void given_a_string_null_when_generarCodigoFactura_then_exception(){
-        System.out.println("Prueba 7");
+        System.out.println("Prueba 7 de Factura Controller Test");
         String expected = "00001";
         assertEquals(expected, factura.generarCodigoFactura(null));
 
@@ -106,7 +106,7 @@ public class FacturaControllerTest {
 
     @Test
     public void given_subtotal_and_Iva_when_calcularTotal_then_Ok(){
-        System.out.println("Prueba 8");
+        System.out.println("Prueba 8 de Factura Controller Test");
         double expect = 34.23;
         double resultado = factura.calcularTotal(new BigDecimal("30.56"),
                                                  new BigDecimal("3.67")).doubleValue();

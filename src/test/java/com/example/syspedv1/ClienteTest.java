@@ -19,6 +19,7 @@ public class ClienteTest {
 
     @Test
     public void given_id_when_obtain_client_then_found() {
+        System.out.println("Prueba 1 de Cliente Test");
         Mockito.when(cliente.verificarExistencia(Mockito.any())).thenReturn(true);
         boolean clienteExiste = cliente.verificarExistencia("1722134956");
         Mockito.when(cliente.obtenerCliente(Mockito.any())).
@@ -28,6 +29,7 @@ public class ClienteTest {
 
     @Test
     public void given_client_data_when_register_client_then_ok() {
+        System.out.println("Prueba 2 de Cliente Test");
         Mockito.when(cliente.verificarExistencia(Mockito.any())).thenReturn(false);
         boolean clienteExiste = cliente.verificarExistencia("1722126958");
         Mockito.when(cliente.registrarCliente(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any())).

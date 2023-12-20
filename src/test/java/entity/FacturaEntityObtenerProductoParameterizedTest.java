@@ -42,6 +42,7 @@ public class FacturaEntityObtenerProductoParameterizedTest {
 
     @Test(timeout = 100000)
     public void given_parameters_when_obtain_product_then_ok() {
+        System.out.println("Prueba 1 de FacturaEntity ObtenerProducto ParameterizedTest");
         assertEquals(this.nombreProductoEsperado, factura.obtenerProducto(this.codigoProducto).getNombreProducto());
     }
 }

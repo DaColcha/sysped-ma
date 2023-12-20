@@ -43,6 +43,7 @@ public class FacturaEntityCodigoFacturaParameterizedTest {
 
     @Test
     public void given_parameters_when_generate_bill_code_then_ok() {
+        System.out.println("Prueba 1 de FacturaEntity CodigoFactura ParameterizedTest");
         assertEquals(this.codigoEsperado, factura.generarCodigoFactura(ultimoCodigo));
     }
 

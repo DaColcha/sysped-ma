@@ -127,8 +127,8 @@ public class FacturaController {
 
     private String formarDetallesPedido(ProductoEntity producto, int cantidad){
         return "<tr>"
-                + "<td>" + "$ " + cantidad + "</td>"
-                + "<td>" + "$ " + producto.getNombreProducto() + "</td>"
+                + "<td>" + cantidad + "</td>"
+                + "<td>" + producto.getNombreProducto() + "</td>"
                 + "<td>" + "$ " + producto.getPrecio() + "</td>"
                 + "<td>" + "$ " + producto.getPrecio().multiply(BigDecimal.valueOf(cantidad)) + "</td>"
                 + "</tr>";

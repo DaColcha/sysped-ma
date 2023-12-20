@@ -28,8 +28,8 @@ public class Ticket {
 
     private String formarItems(ProductoEntity p, int cantidad){
         return "<tr>"
-                + "<td>" + "$ " + cantidad + "</td>"
-                + "<td>" + "$ " + p.getNombreProducto() + "</td>"
+                + "<td>" + cantidad + "</td>"
+                + "<td>" + p.getNombreProducto() + "</td>"
                 + "<td>" + "$ " + p.getPrecio() + "</td>"
                 + "<td>" + "$ " + p.getPrecio().multiply(BigDecimal.valueOf(cantidad)) + "</td>"
                 + "</tr>";

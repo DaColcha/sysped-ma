@@ -5,6 +5,7 @@ import jakarta.persistence.TypedQuery;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,7 +89,7 @@ public class Ticket {
     private  String formarPieTabla(double total) {
         return "<tr>"
                 + "<td colspan=\"3\"><strong>Total:</strong></td>"
-                + "<td>$ " + BigDecimal.valueOf(total) + "</td>"
+                + "<td>$ " + BigDecimal.valueOf(total).setScale(2, RoundingMode.HALF_UP) + "</td>"
                 + "</tr>"
                 + "</table> "
                 + "<div/>";

@@ -225,7 +225,13 @@ textarea {
     left: 850px;
 }
 
-.close-icon img {
+.refresh-icon {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+}
+
+.close-icon img, .refresh-icon {
     cursor: pointer;
 }
 

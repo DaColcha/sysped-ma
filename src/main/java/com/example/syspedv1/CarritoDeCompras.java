@@ -78,7 +78,7 @@ public class CarritoDeCompras {
     }
 
     private String formarCabeceraTabla(){
-        return "<table class=\"cart-table\">" +"<theader<<tr>"
+        return "<table id=\"miTabla\" class=\"cart-table\">" +"<theader<<tr>"
                 + "<th>Codigo</th>"
                 + "<th>Descripcion</th>"
                 + "<th>Cantidad 🖊</th>"
@@ -98,9 +98,9 @@ public class CarritoDeCompras {
     }
     private String formarFila(ProductoEntity p, int cantidad,String detalle){
         return "<tr>"
-                + "<td class=\"data\">" + p.getIdProducto()+ "</td>"
+                + "<td class=\"data id\">" + p.getIdProducto()+ "</td>"
                 + "<td class=\"data\">" + p.getNombreProducto() + "</td>"
-                + "<td class=\"data-edit\" contenteditable=\"true\">" + cantidad + "</td>"
+                + "<td class=\"data-edit cantidad\" contenteditable=\"true\">" + cantidad + "</td>"
                 + "<td class=\"data\">" + p.getPrecio() + "</td>"
                 + "<td class=\"data\">" + p.getPrecio().multiply(BigDecimal.valueOf(cantidad)) + "</td>"
                 + "<td class=\"data-edit detalle\" contenteditable=\"true\">" + detalle+ "</td>"

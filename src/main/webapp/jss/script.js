@@ -82,39 +82,39 @@ $(document).ready(function () {
 
     });
 
-    // $(document).on('click', '.Actualizar', function () {
-    //     const filas = $('#miTabla tbody tr:not(:first,:last)');
-    //
-    //     // Crear un array para almacenar los datos de cada fila
-    //     let datos = [];
-    //     console.log("Número de filas:", filas.length);
-    //
-    //     // Iterar sobre cada fila
-    //     filas.each(function () {
-    //         let id = $(this).find('.id').text();
-    //         let cantidad = $(this).find('.cantidad').text();
-    //         let detalle = $(this).find('.detalle').text();
-    //         console.log("id:", id, "cantidad:", cantidad, "detalle:", detalle);
-    //
-    //         // Agregar los datos de la fila al array
-    //         datos.push({
-    //             id: id,
-    //             cantidad: cantidad,
-    //             detalle: detalle
-    //         });
-    //     });
-    //     $.ajax({
-    //         url: "/carrito",
-    //         type: 'PUT',
-    //         contentType: 'application/json',
-    //         data: JSON.stringify(datos),
-    //         success: function(response) {
-    //             window.location.href = '/carrito';
-    //         },
-    //         error: function(error) {
-    //             console.error('Error:', error);
-    //         }
-    //     });
-    //
-    // });
+    $(document).on('click', '.Actualizar', function () {
+        const filas = $('#miTabla tbody tr:not(:first,:last)');
+
+        // Crear un array para almacenar los datos de cada fila
+        let datos = [];
+        console.log("Número de filas:", filas.length);
+
+        // Iterar sobre cada fila
+        filas.each(function () {
+            let id = $(this).find('.id').text();
+            let cantidad = $(this).find('.cantidad').text();
+            let detalle = $(this).find('.detalle').text();
+            console.log("id:", id, "cantidad:", cantidad, "detalle:", detalle);
+
+            // Agregar los datos de la fila al array
+            datos.push({
+                id: id,
+                cantidad: cantidad,
+                detalle: detalle
+            });
+        });
+        $.ajax({
+            url: "/carrito",
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify(datos),
+            success: function(response) {
+                window.location.href = '/carrito';
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+
+    });
 });

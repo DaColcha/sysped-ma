@@ -59,7 +59,7 @@ public class FacturaControllerTest {
 
     //prueba de desempeño
 
-    @Test(timeout = 1000000)
+    @Test(timeout = 100000)
     public void given_calcularSubTotal_should_be_executed_in() {
         System.out.println("Prueba 3 de Factura Controller Test");
         List<DetallePedidosEntity> detallesPedido = new ArrayList<>();

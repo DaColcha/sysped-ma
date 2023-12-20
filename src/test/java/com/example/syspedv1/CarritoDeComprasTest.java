@@ -32,7 +32,7 @@ public class CarritoDeComprasTest {
         assertFalse(carrito.mostrarCarrito().contains("Producto2"));
     }
 
-    @Test
+    @Test(timeout = 10000)
     public void givenUpdatedQuantity_whenActualizar_thenQuantityUpdated() {
         System.out.println("Prueba 3 del Carrito de Compras");
         ProductoEntity producto = new ProductoEntity("003", "Producto3", new BigDecimal("25.00"));

@@ -1,33 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="sysped@localhost" uuid="c242f6f2-720c-4496-bd24-3cc5c1cb6062">
-      <driver-ref>mysql.8</driver-ref>
+    <data-source source="LOCAL" name="@ma-server" uuid="bd730979-fc3c-4333-8438-69b23bc3cfef">
+      <driver-ref>azure.ms</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/sysped</jdbc-url>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://ma-server.database.windows.net:1433;database=sysped</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="default/OpenJPA" uuid="56a180ad-226b-4b07-ad20-cfe5b6a07c6d">
-      <driver-ref>mysql.8</driver-ref>
+    <data-source source="LOCAL" name="default/Hibernate" uuid="c14953f6-b4fc-4916-bfc2-b6c033758d2f">
+      <driver-ref>azure.ms</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
-      <remarks>OpenJPA
+      <remarks>Hibernate
 
-D:/UNIVERSIDAD/SEXTO SEMESTRE/METODOLOGIAS AGILES/Proyectos/Proyecto_Tareas_PrimerBimestre/sysped-ma/src/main/resources/META-INF/persistence.xml</remarks>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/sysped</jdbc-url>
+D:/Repositorios/Repositorios-Sexto/sysped-ma/src/main/resources/META-INF/persistence.xml</remarks>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://ma-server.database.windows.net:1433;database=sysped</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="default/TopLink" uuid="c9d92e93-2bce-4c2a-aa78-0c0ae92e2850">
-      <driver-ref>mysql.8</driver-ref>
+    <data-source source="LOCAL" name="sysped@ma-server.database.windows.net" uuid="3fafdb8e-be64-40c8-a830-9b7c6671d27b">
+      <driver-ref>azure.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://ma-server.database.windows.net:1433;database=sysped</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="default/TopLink" uuid="1987ee8f-2537-4f21-94fa-616dc7aaeb27">
+      <driver-ref>azure.ms</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
       <remarks>TopLink
 
-D:/UNIVERSIDAD/SEXTO SEMESTRE/METODOLOGIAS AGILES/Proyectos/Proyecto_Tareas_PrimerBimestre/sysped-ma/src/main/resources/META-INF/persistence.xml</remarks>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/sysped</jdbc-url>
+D:/Repositorios/Repositorios-Sexto/sysped-ma/src/main/resources/META-INF/persistence.xml</remarks>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://ma-server.database.windows.net:1433;database=sysped</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="default/OpenJPA" uuid="6954f26b-0816-4591-ad01-626ff0d2e16d">
+      <driver-ref>azure.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>OpenJPA
+
+D:/Repositorios/Repositorios-Sexto/sysped-ma/src/main/resources/META-INF/persistence.xml</remarks>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://ma-server.database.windows.net:1433;database=sysped</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

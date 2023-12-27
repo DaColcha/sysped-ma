@@ -11,19 +11,19 @@
         <class>entity.PedidoEntity</class>
         <class>entity.ProductoEntity</class>
         <properties>
-            <property name="toplink.jdbc.url" value="jdbc:mysql://0c6.h.filess.io:3307/sysped_teacherdo"/>
+            <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/sysped"/>
             <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="toplink.jdbc.user" value="sysped_teacherdo"/>
-            <property name="toplink.jdbc.password" value="c1ae474e2a3f8039bd9a8c6351bd3bb87560a775"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://0c6.h.filess.io:3307/sysped_teacherdo"/>
+            <property name="toplink.jdbc.user" value="root"/>
+            <property name="toplink.jdbc.password" value="CondoritoBD2023.."/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/sysped"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
 
 <!--            credenciales mysql-->
-            <property name="hibernate.connection.username" value="sysped_teacherdo"/>
+            <property name="hibernate.connection.username" value="root"/>
 
-            <property name="hibernate.connection.password" value="c1ae474e2a3f8039bd9a8c6351bd3bb87560a775"/>
+            <property name="hibernate.connection.password" value="CondoritoBD2023.."/>
 
-            <property name="openjpa.ConnectionURL" value="jdbc:mysql://0c6.h.filess.io:3307/sysped_teacherdo"/>
+            <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/sysped"/>
             <property name="openjpa.ConnectionDriverName" value="com.mysql.cj.jdbc.Driver"/>
 
 

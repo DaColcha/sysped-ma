@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @Entity
-@Table(name = "producto", schema = "sysped_teacherdo", catalog = "")
+@Table(name = "producto", schema = "dbo", catalog = "sysped")
 @NamedQuery(name = "Productos.allResults", query = "SELECT p FROM  ProductoEntity p")
 @NamedQuery(name = "Producto.byIdProdcuto", query = "SELECT p FROM  ProductoEntity p WHERE p.idProducto=?1")
 public class ProductoEntity {

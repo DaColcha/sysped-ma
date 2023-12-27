@@ -5,9 +5,10 @@ import jakarta.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "cliente", schema = "sysped_teacherdo", catalog = "")
+@Table(name = "cliente", schema = "dbo", catalog = "sysped")
 @NamedQuery(name = "Cliente.byIdCliente", query = "SELECT c FROM  ClienteEntity c WHERE c.cedula = ?1")
 public class ClienteEntity {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "cedula")
     private String cedula;
@@ -25,6 +26,9 @@ public class ClienteEntity {
     private String telefono;
     @OneToMany(mappedBy = "clienteByCliente")
     private Collection<FacturaEntity> facturasByCedula;
+    @Basic
+    @Column(name = "direccion")
+    private String direccion;
 
     public String getCedula() {
         return cedula;
@@ -111,5 +115,13 @@ public class ClienteEntity {
                 ", telefono='" + telefono + '\'' +
                 ", facturasByCedula=" + facturasByCedula +
                 '}';
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 }

@@ -3,11 +3,12 @@ package entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "detalle_pedidos", schema = "sysped_teacherdo", catalog = "")
+@Table(name = "detalle_pedidos", schema = "dbo", catalog = "sysped")
 @NamedQuery(name = "Pedido.ultimo", query = "SELECT p FROM  PedidoEntity p ORDER BY idPedido DESC LIMIT 1")
 @NamedQuery(name = "DetallePedido.byIdDetalle", query = "SELECT dp FROM  DetallePedidosEntity dp WHERE dp.pedido = ?1")
 @IdClass(DetallePedidosEntityPK.class)
 public class DetallePedidosEntity {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "numDetalle")
     private int numDetalle;
@@ -22,23 +23,27 @@ public class DetallePedidosEntity {
     @Id
     @Column(name = "producto")
     private String producto;
+    @Basic
     @Column(name = "cantidad")
     private int cantidad;
+    @ManyToOne
+    @JoinColumns({@JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false, insertable = false, updatable = false), @JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false)})
+    private PedidoEntity pedidoByPedido;
+    @ManyToOne
+    @JoinColumns({@JoinColumn(name = "producto", referencedColumnName = "idProducto", nullable = false, insertable = false, updatable = false), @JoinColumn(name = "producto", referencedColumnName = "idProducto", nullable = false)})
+    private ProductoEntity productoByProducto;
 
     public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false, insertable = false, updatable = false)
-    private PedidoEntity pedidoByPedido;
-    @ManyToOne
-    @JoinColumn(name = "producto", referencedColumnName = "idProducto", nullable = false,insertable = false, updatable = false)
-    private ProductoEntity productoByProducto;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
 
     public int getNumDetalle() {
         return numDetalle;

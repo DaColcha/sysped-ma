@@ -5,11 +5,12 @@ import jakarta.persistence.*;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "factura", schema = "sysped_teacherdo", catalog = "")
+@Table(name = "factura", schema = "dbo", catalog = "sysped")
 public class FacturaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -25,11 +26,14 @@ public class FacturaEntity {
     @Column(name = "metodoPago")
     private String metodoPago;
     @ManyToOne
-    @JoinColumn(name = "cliente", referencedColumnName = "cedula", nullable = false, insertable = false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "cliente", referencedColumnName = "cedula", nullable = false, insertable = false, updatable = false), @JoinColumn(name = "cliente", referencedColumnName = "cedula", nullable = false)})
     private ClienteEntity clienteByCliente;
     @ManyToOne
-    @JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false,insertable = false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false, insertable = false, updatable = false), @JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false)})
     private PedidoEntity pedidoByPedido;
+    @Basic
+    @Column(name = "fechaFactura")
+    private Date fechaFactura;
 
     public String getNumFactura() {
         return numFactura;
@@ -113,5 +117,13 @@ public class FacturaEntity {
                 ", clienteByCliente=" + clienteByCliente +
                 ", pedidoByPedido=" + pedidoByPedido +
                 '}';
+    }
+
+    public Date getFechaFactura() {
+        return fechaFactura;
+    }
+
+    public void setFechaFactura(Date fechaFactura) {
+        this.fechaFactura = fechaFactura;
     }
 }

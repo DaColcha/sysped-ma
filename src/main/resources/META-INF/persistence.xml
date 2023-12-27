@@ -11,21 +11,19 @@
         <class>entity.PedidoEntity</class>
         <class>entity.ProductoEntity</class>
         <properties>
-            <property name="toplink.jdbc.url" value="jdbc:mysql://0c6.h.filess.io:3307/sysped_teacherdo"/>
-            <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="toplink.jdbc.user" value="sysped_teacherdo"/>
-            <property name="toplink.jdbc.password" value="c1ae474e2a3f8039bd9a8c6351bd3bb87560a775"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://0c6.h.filess.io:3307/sysped_teacherdo"/>
-            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
 
-<!--            credenciales mysql-->
-            <property name="hibernate.connection.username" value="sysped_teacherdo"/>
+            <property name="toplink.jdbc.url" value="jdbc:sqlserver://ma-server.database.windows.net:1433;database=sysped"/>
+            <property name="toplink.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name="toplink.jdbc.user" value="ma-server"/>
+            <property name="toplink.jdbc.password" value="ma-2023B"/>
 
-            <property name="hibernate.connection.password" value="c1ae474e2a3f8039bd9a8c6351bd3bb87560a775"/>
+            <property name="hibernate.connection.url" value="jdbc:sqlserver://ma-server.database.windows.net:1433;database=sysped"/>
+            <property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name="hibernate.connection.username" value="ma-server"/>
+            <property name="hibernate.connection.password" value="ma-2023B"/>
 
-            <property name="openjpa.ConnectionURL" value="jdbc:mysql://0c6.h.filess.io:3307/sysped_teacherdo"/>
-            <property name="openjpa.ConnectionDriverName" value="com.mysql.cj.jdbc.Driver"/>
-
+            <property name="openjpa.ConnectionURL" value="jdbc:sqlserver://ma-server.database.windows.net:1433;database=sysped"/>
+            <property name="openjpa.ConnectionDriverName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
 
         </properties>
     </persistence-unit>

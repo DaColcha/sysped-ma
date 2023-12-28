@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "pedido", schema = "dbo", catalog = "sysped")
 @NamedQuery(name = "Pedido.byIdPedido", query = "SELECT p FROM  PedidoEntity p WHERE p.idPedido=?1")
 public class PedidoEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
     @Column(name = "idPedido")
     private String idPedido;

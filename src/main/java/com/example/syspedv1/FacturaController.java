@@ -1,7 +1,10 @@
 package com.example.syspedv1;
 
+import entity.ClienteEntity;
 import entity.DetallePedidosEntity;
 import entity.ProductoEntity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -12,8 +15,8 @@ import java.util.List;
 
 public class FacturaController {
 
-    public FacturaController() {
-    }
+    private ClienteEntity cliente;
+
 
     public BigDecimal calcularSubtotal(List<DetallePedidosEntity> detallesPedido) {
         BigDecimal resultado = new BigDecimal("0");
@@ -77,27 +80,8 @@ public class FacturaController {
         return detallesPedido;
     }
 
-    public String generarFactura() {
-        String salida = "<div><label for = \"nombreCliente\">Nombre: </label>"
-                + "<input type=\"text\" name=\"nombreCliente\" id=\"nombreCliente\"> </div>"
-
-                + "<div><label for = \"apellidoCliente\">Apellido: </label>"
-                + "<input type=\"text\" name=\"apellidoCliente\" id=\"apellidoCliente\"> </div>"
-
-                + "<div><label for = \"cedulaCliente\">Cedula: </label>"
-                + "<input type=\"text\" name=\"cedulaCliente\" id=\"cedulaCliente\"> </div>"
-
-                + "<div><label for = \"telefonoCliente\">Teléfono: </label>"
-                + "<input type=\"text\" name=\"telefonoCliente\" id=\"telefonoCliente\"> </div>"
-
-                + "<div><label for = \"emailCliente\">Correo Eléctronico: </label>"
-                + "<input type=\"text\" name=\"emailCliente\" id=\"emailCliente\"> </div>"
-
-                + "<div><label for = \"direccionCliente\">Dirección: </label>"
-                + "<input type=\"text\" name=\"direccionCliente\" id=\"direccionCliente\"> </div>"
-
-                + "<div><label for = \"codigoPedido\">Código del ticket del pedido: </label>"
-                + "<input type=\"text\" name=\"codigoPedido\" id=\"codigoPedido\"> </div>";
+    public String ingresoDatosCliente() {
+        String salida = "";
 
         return salida;
     }

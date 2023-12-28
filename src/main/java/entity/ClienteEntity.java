@@ -8,7 +8,7 @@ import java.util.Collection;
 @Table(name = "cliente", schema = "dbo", catalog = "sysped")
 @NamedQuery(name = "Cliente.byIdCliente", query = "SELECT c FROM  ClienteEntity c WHERE c.cedula = ?1")
 public class ClienteEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
     @Column(name = "cedula")
     private String cedula;
@@ -24,6 +24,7 @@ public class ClienteEntity {
     @Basic
     @Column(name = "telefono")
     private String telefono;
+
     @OneToMany(mappedBy = "clienteByCliente")
     private Collection<FacturaEntity> facturasByCedula;
     @Basic

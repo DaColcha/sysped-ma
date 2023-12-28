@@ -26,10 +26,10 @@ public class FacturaEntity {
     @Column(name = "metodoPago")
     private String metodoPago;
     @ManyToOne
-    @JoinColumns({@JoinColumn(name = "cliente", referencedColumnName = "cedula", nullable = false, insertable = false, updatable = false), @JoinColumn(name = "cliente", referencedColumnName = "cedula", nullable = false)})
+    @JoinColumns(@JoinColumn(name = "cliente", referencedColumnName = "cedula", nullable = false, insertable = false, updatable = false))
     private ClienteEntity clienteByCliente;
     @ManyToOne
-    @JoinColumns({@JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false, insertable = false, updatable = false), @JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false)})
+    @JoinColumns(@JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false, insertable = false, updatable = false))
     private PedidoEntity pedidoByPedido;
     @Basic
     @Column(name = "fechaFactura")

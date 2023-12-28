@@ -1,47 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@ma-server" uuid="bd730979-fc3c-4333-8438-69b23bc3cfef">
+    <data-source source="LOCAL" name="sysped@ma-server.database.windows.net" uuid="9d173958-e0f9-40ae-bf33-809282c4e706">
       <driver-ref>azure.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
       <jdbc-url>jdbc:sqlserver://ma-server.database.windows.net:1433;database=sysped</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="default/Hibernate" uuid="c14953f6-b4fc-4916-bfc2-b6c033758d2f">
+    <data-source source="LOCAL" name="default/Hibernate" uuid="fcf40824-c808-4681-8758-bc60ca2b31d5">
       <driver-ref>azure.ms</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
       <remarks>Hibernate
-
-D:/Repositorios/Repositorios-Sexto/sysped-ma/src/main/resources/META-INF/persistence.xml</remarks>
-      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://ma-server.database.windows.net:1433;database=sysped</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="sysped@ma-server.database.windows.net" uuid="3fafdb8e-be64-40c8-a830-9b7c6671d27b">
-      <driver-ref>azure.ms</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://ma-server.database.windows.net:1433;database=sysped</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="default/TopLink" uuid="1987ee8f-2537-4f21-94fa-616dc7aaeb27">
-      <driver-ref>azure.ms</driver-ref>
-      <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>TopLink
-
-D:/Repositorios/Repositorios-Sexto/sysped-ma/src/main/resources/META-INF/persistence.xml</remarks>
-      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://ma-server.database.windows.net:1433;database=sysped</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="default/OpenJPA" uuid="6954f26b-0816-4591-ad01-626ff0d2e16d">
-      <driver-ref>azure.ms</driver-ref>
-      <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>OpenJPA
 
 D:/Repositorios/Repositorios-Sexto/sysped-ma/src/main/resources/META-INF/persistence.xml</remarks>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>

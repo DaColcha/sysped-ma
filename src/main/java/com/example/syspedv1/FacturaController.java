@@ -52,7 +52,10 @@ public class FacturaController {
             TypedQuery<ProductoEntity> productoById=  DBConnection.entityManager.createNamedQuery
                     ("Producto.byIdProdcuto", ProductoEntity.class);
             productoById.setParameter(1, codigoProducto);
-            producto = productoById.getResultList().get(0);
+            List<ProductoEntity> resultList = productoById.getResultList();
+            if (!resultList.isEmpty()) {
+                producto = resultList.get(0);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -3,6 +3,17 @@
   <component name="DdlMappings">
     <mapping uuid="bf7f6d49-bb97-4ee2-a81e-9321e78b1abe" name="@ma-server Mapping">
       <data-sources db="bd730979-fc3c-4333-8438-69b23bc3cfef" />
+      <scope>
+        <node kind="database" qname="sysped">
+          <node kind="schema" qname="@" />
+        </node>
+      </scope>
+    </mapping>
+    <mapping uuid="6dd85e40-6df3-428e-a13d-6efb580a0db4" name="sysped@ma-server.database.windows.net Mapping">
+      <data-sources db="3fafdb8e-be64-40c8-a830-9b7c6671d27b" />
+      <scope>
+        <node kind="database" qname="sysped" />
+      </scope>
     </mapping>
   </component>
 </project>

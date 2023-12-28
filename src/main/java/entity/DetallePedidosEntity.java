@@ -8,17 +8,20 @@ import jakarta.persistence.*;
 @NamedQuery(name = "DetallePedido.byIdDetalle", query = "SELECT dp FROM  DetallePedidosEntity dp WHERE dp.pedido = ?1")
 @IdClass(DetallePedidosEntityPK.class)
 public class DetallePedidosEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "numDetalle")
     private int numDetalle;
     @Basic
     @Column(name = "especificaciones")
     private String especificaciones;
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "pedido")
     private String pedido;
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "producto")
@@ -27,10 +30,10 @@ public class DetallePedidosEntity {
     @Column(name = "cantidad")
     private int cantidad;
     @ManyToOne
-    @JoinColumns({@JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false, insertable = false, updatable = false), @JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false)})
+    @JoinColumns(@JoinColumn(name = "pedido", referencedColumnName = "idPedido", nullable = false, insertable = false, updatable = false))
     private PedidoEntity pedidoByPedido;
     @ManyToOne
-    @JoinColumns({@JoinColumn(name = "producto", referencedColumnName = "idProducto", nullable = false, insertable = false, updatable = false), @JoinColumn(name = "producto", referencedColumnName = "idProducto", nullable = false)})
+    @JoinColumns(@JoinColumn(name = "producto", referencedColumnName = "idProducto", nullable = false,insertable = false, updatable = false))
     private ProductoEntity productoByProducto;
 
     public int getCantidad() {

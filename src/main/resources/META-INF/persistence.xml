@@ -10,20 +10,13 @@
         <class>entity.FacturaEntity</class>
         <class>entity.PedidoEntity</class>
         <class>entity.ProductoEntity</class>
+
         <properties>
-
-
-            <property name="toplink.jdbc.url" value="jdbc:sqlserver://ma-server.database.windows.net:1433;database=sysped"/>
-            <property name="toplink.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-            <property name="toplink.jdbc.user" value="ma-server"/>
-            <property name="toplink.jdbc.password" value="ma-2023B"/>
 
             <property name="hibernate.connection.url" value="jdbc:sqlserver://ma-server.database.windows.net:1433;database=sysped"/>
             <property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
             <property name="hibernate.connection.username" value="ma-server"/>
             <property name="hibernate.connection.password" value="ma-2023B"/>
-            <property name="openjpa.ConnectionURL" value="jdbc:sqlserver://ma-server.database.windows.net:1433;database=sysped"/>
-            <property name="openjpa.ConnectionDriverName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
 
         </properties>
     </persistence-unit>

@@ -97,7 +97,12 @@ public class FacturaController {
                 + "<input type=\"text\" name=\"direccionCliente\" id=\"direccionCliente\"> </div>"
 
                 + "<div><label for = \"codigoPedido\">Código del ticket del pedido: </label>"
-                + "<input type=\"text\" name=\"codigoPedido\" id=\"codigoPedido\"> </div>";
+                + "<input type=\"text\" name=\"codigoPedido\" id=\"codigoPedido\"> </div>"
+
+                + "<div><label for = \"metodoPago\">Selecciona la forma de pago: </label>"
+                + "<select name=\"metodoPago\" id=\"metodoPago\">"
+                + "<option value=\"Efectivo\">Efectivo</option>"
+                + "<option value=\"Tarjeta\">Tarjeta</option> </select> </div>";
 
         return salida;
     }

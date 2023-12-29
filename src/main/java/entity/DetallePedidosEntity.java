@@ -10,7 +10,7 @@ import jakarta.persistence.*;
 public class DetallePedidosEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "numDetalle")
     private int numDetalle;
     @Basic

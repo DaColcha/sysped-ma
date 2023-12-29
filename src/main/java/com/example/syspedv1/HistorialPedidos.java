@@ -76,15 +76,18 @@ public class HistorialPedidos {
     }
 
     public String ultimoCodigo(){
+        String code = "00000";
         try  {
             List<PedidoEntity> pedidosOrdenDescendente = DBConnection.entityManager.createNamedQuery
                     ("Pedido.ultimo", PedidoEntity.class).getResultList();
-            return pedidosOrdenDescendente.get(0).getIdPedido();
+            if (pedidosOrdenDescendente != null){
+                code = pedidosOrdenDescendente.get(0).getIdPedido();
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
         }
-        return "00000";
+        return code;
     }
 
 }

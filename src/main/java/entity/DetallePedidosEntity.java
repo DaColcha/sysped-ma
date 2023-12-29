@@ -10,19 +10,17 @@ import jakarta.persistence.*;
 public class DetallePedidosEntity {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "numDetalle")
     private int numDetalle;
     @Basic
     @Column(name = "especificaciones")
     private String especificaciones;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "pedido")
     private String pedido;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
     @Column(name = "producto")
     private String producto;

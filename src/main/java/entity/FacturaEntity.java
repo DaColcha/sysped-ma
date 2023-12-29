@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "factura", schema = "dbo", catalog = "sysped")
 public class FacturaEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
     @Column(name = "numFactura")
     private String numFactura;

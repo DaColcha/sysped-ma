@@ -1,7 +1,10 @@
 package com.example.syspedv1;
 
+import entity.ClienteEntity;
 import entity.DetallePedidosEntity;
 import entity.ProductoEntity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -12,7 +15,15 @@ import java.util.List;
 
 public class FacturaController {
 
-    public FacturaController() {
+    private ClienteEntity cliente;
+    private String codPedido;
+
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
+
+    public void setCodPedido(String codPedido) {
+        this.codPedido = codPedido;
     }
 
     public BigDecimal calcularSubtotal(List<DetallePedidosEntity> detallesPedido) {
@@ -63,12 +74,12 @@ public class FacturaController {
         return producto;
     }
 
-    private List<DetallePedidosEntity> obtenerDetallesPedido(String codigoPedido) {
+    private List<DetallePedidosEntity> obtenerDetallesPedido() {
         List<DetallePedidosEntity> detallesPedido = new ArrayList<>();
         try  {
             TypedQuery<DetallePedidosEntity> detallePedidobyId =  DBConnection.entityManager.createNamedQuery
                     ("DetallePedido.byIdDetalle", DetallePedidosEntity.class);
-            detallePedidobyId.setParameter(1, codigoPedido);
+            detallePedidobyId.setParameter(1, this.codPedido);
             detallesPedido = detallePedidobyId.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,55 +88,26 @@ public class FacturaController {
         return detallesPedido;
     }
 
-    public String generarFactura() {
-        String salida = "<div><label for = \"nombreCliente\">Nombre: </label>"
-                + "<input type=\"text\" name=\"nombreCliente\" id=\"nombreCliente\"> </div>"
 
-                + "<div><label for = \"apellidoCliente\">Apellido: </label>"
-                + "<input type=\"text\" name=\"apellidoCliente\" id=\"apellidoCliente\"> </div>"
-
-                + "<div><label for = \"cedulaCliente\">Cedula: </label>"
-                + "<input type=\"text\" name=\"cedulaCliente\" id=\"cedulaCliente\"> </div>"
-
-                + "<div><label for = \"telefonoCliente\">Teléfono: </label>"
-                + "<input type=\"text\" name=\"telefonoCliente\" id=\"telefonoCliente\"> </div>"
-
-                + "<div><label for = \"emailCliente\">Correo Eléctronico: </label>"
-                + "<input type=\"text\" name=\"emailCliente\" id=\"emailCliente\"> </div>"
-
-                + "<div><label for = \"direccionCliente\">Dirección: </label>"
-                + "<input type=\"text\" name=\"direccionCliente\" id=\"direccionCliente\"> </div>"
-
-                + "<div><label for = \"codigoPedido\">Código del ticket del pedido: </label>"
-                + "<input type=\"text\" name=\"codigoPedido\" id=\"codigoPedido\"> </div>"
-
-                + "<div><label for = \"metodoPago\">Selecciona la forma de pago: </label>"
-                + "<select name=\"metodoPago\" id=\"metodoPago\">"
-                + "<option value=\"Efectivo\">Efectivo</option>"
-                + "<option value=\"Tarjeta\">Tarjeta</option> </select> </div>";
-
-        return salida;
-    }
-
-    public String mostrarFactura(HttpServletRequest request){
+    public String mostrarFactura(){
         String resultado = "<div>" +
                 "<br><div><h2>Factura Nº "+ generarCodigoFactura("0") + "</h2></div>"
-                + "<div><p>Correspondiente al pedido Nº "+ request.getParameter("codigoPedido") + "</p></div>"
+                + "<div><p>Correspondiente al pedido Nº "+ this.codPedido + "</p></div>"
                 + "<table border = \"1\">"
                 + "<tr>"
-                + "<td><strong> Cliente </strong></td>" + "<td>" + request.getParameter("nombreCliente") + " " + request.getParameter("apellidoCliente")+ "</td>"
+                + "<td><strong> Cliente </strong></td>" + "<td>" + this.cliente.getNombres() + " " + this.cliente.getApellidos()+ "</td>"
                 + "</tr>"
                 + "<tr>"
-                + "<td><strong> Cédula </strong></td>" + "<td>" + request.getParameter("cedulaCliente") + "</td>"
+                + "<td><strong> Cédula </strong></td>" + "<td>" + this.cliente.getCedula() + "</td>"
                 + "</tr>"
                 + "<tr>"
-                + "<td><strong> Teléfono </strong></td>" + "<td>" + request.getParameter("telefonoCliente") + "</td>"
+                + "<td><strong> Teléfono </strong></td>" + "<td>" + this.cliente.getTelefono() + "</td>"
                 + "</tr>"
                 + "<tr>"
-                + "<td><strong> Correo electrónico </strong></td>" + "<td>" + request.getParameter("emailCliente") + "</td>"
+                + "<td><strong> Correo electrónico </strong></td>" + "<td>" + this.cliente.getCorreoElectronico() + "</td>"
                 + "</tr>"
                 + "<tr>"
-                + "<td><strong> Dirección </strong></td>" + "<td>" + request.getParameter("direccionCliente") + "</td>"
+                + "<td><strong> Dirección </strong></td>" + "<td>" + this.cliente.getDireccion() + "</td>"
                 + "</tr>"
 
                 + "</table>"
@@ -142,7 +124,7 @@ public class FacturaController {
                 + "</tr>";
     }
 
-    public String mostrarDetalleFactura(HttpServletRequest request){
+    public String mostrarDetalleFactura(){
         String resultado = "<div>"
                 + "<table border = \"1\">"
                 + "<tr>"
@@ -153,29 +135,29 @@ public class FacturaController {
                 + "</tr>";
         String idProducto;
         ProductoEntity producto;
-        for(DetallePedidosEntity detalles : this.obtenerDetallesPedido(request.getParameter("codigoPedido"))){
+        for(DetallePedidosEntity detalles : this.obtenerDetallesPedido()){
             idProducto = detalles.getProducto();
             producto = obtenerProducto(idProducto);
             resultado += formarDetallesPedido(producto, detalles.getCantidad());
         }
-        resultado += mostrarCalculoTotal(request);
+        resultado += mostrarCalculoTotal();
         return resultado;
     }
 
-    public String mostrarCalculoTotal(HttpServletRequest request){
-        BigDecimal subtotal = this.calcularSubtotal(this.obtenerDetallesPedido(request.getParameter("codigoPedido")));
+    public String mostrarCalculoTotal(){
+        BigDecimal subtotal = this.calcularSubtotal(this.obtenerDetallesPedido());
         String resultado =
                 "<tr>"
-                + "<td colspan=\"3\"><strong> Subtotal </strong></td>" + "<td>" + "$ " + subtotal + "</td>"
-                + "</tr>"
-                + "<tr>"
-                + "<td colspan=\"3\"><strong> IVA </strong></td>" + "<td>" + "$ " + this.calcularIVA(subtotal) + "</td>"
-                + "</tr>"
-                + "<tr>"
-                + "<td colspan=\"3\"><strong> Total </strong></td>" + "<td>" + "$ " + this.calcularTotal(subtotal, this.calcularIVA(subtotal)) + "</td>"
-                + "</tr>"
-                + "</table>"
-                + "</div>";
+                        + "<td colspan=\"3\"><strong> Subtotal </strong></td>" + "<td>" + "$ " + subtotal + "</td>"
+                        + "</tr>"
+                        + "<tr>"
+                        + "<td colspan=\"3\"><strong> IVA </strong></td>" + "<td>" + "$ " + this.calcularIVA(subtotal) + "</td>"
+                        + "</tr>"
+                        + "<tr>"
+                        + "<td colspan=\"3\"><strong> Total </strong></td>" + "<td>" + "$ " + this.calcularTotal(subtotal, this.calcularIVA(subtotal)) + "</td>"
+                        + "</tr>"
+                        + "</table>"
+                        + "</div>";
         return resultado;
     }
 

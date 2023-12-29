@@ -36,6 +36,7 @@ public class CarritoServlet extends HttpServlet {
             double precio = (Double) productoData.get("precio");
             int cantidad = ((Double) productoData.get("cantidad")).intValue();
             String detalle = (String) productoData.get("detalle");
+
             ProductoEntity p = new ProductoEntity();
             p.setPrecio(BigDecimal.valueOf(precio));
             p.setIdProducto(id + "");

@@ -31,8 +31,8 @@ public class Ticket {
         return "<tr>"
                 + "<td>" + cantidad + "</td>"
                 + "<td>" + p.getNombreProducto() + "</td>"
-                + "<td>" + "$ " + p.getPrecio() + "</td>"
-                + "<td>" + "$ " + p.getPrecio().multiply(BigDecimal.valueOf(cantidad)) + "</td>"
+                + "<td>"  + p.getPrecio() + "</td>"
+                + "<td>" + p.getPrecio().multiply(BigDecimal.valueOf(cantidad)) + "</td>"
                 + "</tr>";
     }
     private String generarCodigoTicket(){
@@ -76,9 +76,11 @@ public class Ticket {
     }
 
     private String formarCabeceraTabla(){
-        return "<div class = \"ticket\"> "+
+        return ""+
                 "<div class=\"ticket-header\">Ticket de Compra</div>"+
-                "<div >codigo ticket: "+generarCodigoTicket()+"</div>"+"<table> "
+                "<div class=\"ticket-num\">codigo ticket: "+generarCodigoTicket()+"</div>"
+                +"<div class=\"table-container\">"
+                +"<table> "
                 + "<tr>"
                 + "<th>Cantidad</th>"
                 + "<th>Nombre</th>"
@@ -87,11 +89,11 @@ public class Ticket {
                 + "</tr>";
     }
     private  String formarPieTabla(double total) {
-        return "<tr>"
-                + "<td colspan=\"3\"><strong>Total:</strong></td>"
+        return "<tr class=\"total-st\" >"
+                + "<td colspan=\"3\">Total</td>"
                 + "<td>$ " + BigDecimal.valueOf(total).setScale(2, RoundingMode.HALF_UP) + "</td>"
                 + "</tr>"
-                + "</table> "
-                + "<div/>";
+                + "</table>" +
+                "</div>";
     }
 }

@@ -1,13 +1,17 @@
 package com.example.syspedv1;
 
 import entity.ClienteEntity;
+import entity.ProductoEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
+import org.hibernate.Session;
+
+import java.util.List;
 
 public class ClienteController {
 
     ClienteEntity cliente;
-    EntityManager entityManager = DBConnection.entityManager;
     private void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
@@ -18,16 +22,23 @@ public class ClienteController {
     }
 
     public boolean clienteExiste(String cedula){
-        ClienteEntity existente = obtenerExistente(cedula);
+        ClienteEntity existente = null;
+
+        try  {
+            TypedQuery<ClienteEntity> clienteById=  DBConnection.entityManager.createNamedQuery
+                    ("Cliente.byIdCliente", ClienteEntity.class);
+            clienteById.setParameter(1, cedula);
+            existente = clienteById.getSingleResult();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         if(existente != null){
-            this.cliente = existente;
+            setCliente(existente);
             return true;
         }
         return false;
-    }
-
-    public ClienteEntity obtenerExistente(String cedula){
-        return entityManager.find(ClienteEntity.class, cedula);
     }
 
     private void actulizarCliente(ClienteEntity clienteExistente, ClienteEntity clienteNuevo){
@@ -36,19 +47,14 @@ public class ClienteController {
         clienteExistente.setCorreoElectronico(clienteNuevo.getCorreoElectronico());
     }
     private void enviarABD(ClienteEntity cliente){
+        EntityManager entityManager = DBConnection.entityManager;
         EntityTransaction transaction = null;
 
         try{
             transaction = entityManager.getTransaction();
             transaction.begin();
 
-            //Si ya existe actualizamos
-            if(clienteExiste(cliente.getCedula())){
-                actulizarCliente(obtenerExistente(cliente.getCedula()), cliente);
-            }else{
-                //guardamos
-                entityManager.persist(cliente);
-            }
+            entityManager.persist(cliente);
 
             transaction.commit();
         } catch (Exception e){

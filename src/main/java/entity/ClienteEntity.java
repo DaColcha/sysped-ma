@@ -6,9 +6,8 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "cliente", schema = "dbo", catalog = "sysped")
-@NamedQuery(name = "Cliente.byIdCliente", query = "SELECT c FROM  ClienteEntity c WHERE c.cedula = ?1")
+@NamedQuery(name = "Cliente.byIdCliente", query = "SELECT c FROM ClienteEntity c WHERE c.cedula = ?1")
 public class ClienteEntity {
-
     @Id
     @Column(name = "cedula")
     private String cedula;
@@ -79,11 +78,11 @@ public class ClienteEntity {
         ClienteEntity that = (ClienteEntity) o;
 
         if (cedula != null ? !cedula.equals(that.cedula) : that.cedula != null) return false;
-        if (nombres != null ? !nombres.equals(that.nombres) : that.nombres != null) return false;
-        if (apellidos != null ? !apellidos.equals(that.apellidos) : that.apellidos != null) return false;
-        if (correoElectronico != null ? !correoElectronico.equals(that.correoElectronico) : that.correoElectronico != null)
-            return false;
-        if (telefono != null ? !telefono.equals(that.telefono) : that.telefono != null) return false;
+//        if (nombres != null ? !nombres.equals(that.nombres) : that.nombres != null) return false;
+//        if (apellidos != null ? !apellidos.equals(that.apellidos) : that.apellidos != null) return false;
+//        if (correoElectronico != null ? !correoElectronico.equals(that.correoElectronico) : that.correoElectronico != null)
+//            return false;
+//        if (telefono != null ? !telefono.equals(that.telefono) : that.telefono != null) return false;
 
         return true;
     }
@@ -91,10 +90,11 @@ public class ClienteEntity {
     @Override
     public int hashCode() {
         int result = cedula != null ? cedula.hashCode() : 0;
-        result = 31 * result + (nombres != null ? nombres.hashCode() : 0);
-        result = 31 * result + (apellidos != null ? apellidos.hashCode() : 0);
-        result = 31 * result + (correoElectronico != null ? correoElectronico.hashCode() : 0);
-        result = 31 * result + (telefono != null ? telefono.hashCode() : 0);
+//        result = 31 * result + (nombres != null ? nombres.hashCode() : 0);
+//        result = 31 * result + (apellidos != null ? apellidos.hashCode() : 0);
+//        result = 31 * result + (correoElectronico != null ? correoElectronico.hashCode() : 0);
+//        result = 31 * result + (telefono != null ? telefono.hashCode() : 0);
+
         return result;
     }
 

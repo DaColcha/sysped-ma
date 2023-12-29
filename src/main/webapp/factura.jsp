@@ -9,13 +9,12 @@
 </head>
 <body>
     <h1>Facturación del Pedido</h1>
-    <form action="/factura" method="post" >
-<%--        ${generarFactura}--%>
+    <form action="/factura" method="post" onsubmit="ocultarForm()">
         <div>
             <label for = "cedulaCliente">Cédula: </label>
              <input type="text" name="cedulaCliente" id="cedulaCliente" value="${cedulaCliente}">
-            <div class="validate-btn" onclick="">Validar</div>
-            ${error}
+            <div class="validate-btn" onclick="validarCliente()">Validar</div>
+            <div id="error">${error}</div>
         </div>
         <div>
             <label for = "nombreCliente">Nombre: </label>
@@ -47,7 +46,7 @@
             <input type="text" name="codigoPedido" id="codigoPedido" >
          </div>
 
-         <div><button type="submit">Mostrar factura</button></div>
+         <div><button type="submit" >Generar factura</button></div>
 
     </form>
     <div>

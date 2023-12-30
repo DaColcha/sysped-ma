@@ -1,6 +1,3 @@
-function ocultarForm(){
-
-}
 
 function validarCliente() {
     // Obtener el valor de la cédula

@@ -90,28 +90,26 @@ public class FacturaController {
 
 
     public String mostrarFactura(){
-        String resultado = "<div>" +
-                "<br><div><h2>Factura Nº "+ generarCodigoFactura("0") + "</h2></div>"
-                + "<div><p>Correspondiente al pedido Nº "+ this.codPedido + "</p></div>"
-                + "<table border = \"1\">"
+        String resultado =  "<h2>Factura Nº "+ generarCodigoFactura("0") + "</h2>"
+                + "<p>Correspondiente al pedido Nº "+ this.codPedido + "</p> <hr />"
+                + "<table class=\"table-client\">"
                 + "<tr>"
-                + "<td><strong> Cliente </strong></td>" + "<td>" + this.cliente.getNombres() + " " + this.cliente.getApellidos()+ "</td>"
+                + "<th> Cliente: </th>" + "<td>" + this.cliente.getNombres() + " " + this.cliente.getApellidos()+ "</td>"
                 + "</tr>"
                 + "<tr>"
-                + "<td><strong> Cédula </strong></td>" + "<td>" + this.cliente.getCedula() + "</td>"
+                + "<th> Cédula:</th>" + "<td>" + this.cliente.getCedula() + "</td>"
                 + "</tr>"
                 + "<tr>"
-                + "<td><strong> Teléfono </strong></td>" + "<td>" + this.cliente.getTelefono() + "</td>"
+                + "<th> Teléfono: </th>" + "<td>" + this.cliente.getTelefono() + "</td>"
                 + "</tr>"
                 + "<tr>"
-                + "<td><strong> Correo electrónico </strong></td>" + "<td>" + this.cliente.getCorreoElectronico() + "</td>"
+                + "<th> Correo electrónico: </th>" + "<td>" + this.cliente.getCorreoElectronico() + "</td>"
                 + "</tr>"
                 + "<tr>"
-                + "<td><strong> Dirección </strong></td>" + "<td>" + this.cliente.getDireccion() + "</td>"
+                + "<th>Dirección: </th>" + "<td>" + this.cliente.getDireccion() + "</td>"
                 + "</tr>"
-
                 + "</table>"
-                + "</div>";
+                + "<hr />";
         return resultado;
     }
 
@@ -119,18 +117,17 @@ public class FacturaController {
         return "<tr>"
                 + "<td>" + cantidad + "</td>"
                 + "<td>" + producto.getNombreProducto() + "</td>"
-                + "<td>" + "$ " + producto.getPrecio() + "</td>"
-                + "<td>" + "$ " + producto.getPrecio().multiply(BigDecimal.valueOf(cantidad)) + "</td>"
+                + "<td>"  + producto.getPrecio() + "</td>"
+                + "<td>"  + producto.getPrecio().multiply(BigDecimal.valueOf(cantidad)) + "</td>"
                 + "</tr>";
     }
 
     public String mostrarDetalleFactura(){
-        String resultado = "<div>"
-                + "<table border = \"1\">"
+        String resultado = "<table>"
                 + "<tr>"
                 + "<th>Cantidad</th>"
-                + "<th>Nombre</th>"
-                + "<th>Precio Unitario</th>"
+                + "<th>  Nombre  </th>"
+                + "<th>P. Unitario</th>"
                 + "<th>Total</th>"
                 + "</tr>";
         String idProducto;
@@ -148,16 +145,15 @@ public class FacturaController {
         BigDecimal subtotal = this.calcularSubtotal(this.obtenerDetallesPedido());
         String resultado =
                 "<tr>"
-                + "<td colspan=\"3\"><strong> Subtotal </strong></td>" + "<td>" + "$ " + subtotal + "</td>"
+                + "<th colspan=\"3\"> Subtotal </th>" + "<td>"  + subtotal + "</td>"
                 + "</tr>"
                 + "<tr>"
-                + "<td colspan=\"3\"><strong> IVA </strong></td>" + "<td>" + "$ " + this.calcularIVA(subtotal) + "</td>"
+                + "<th colspan=\"3\"> IVA </th>" + "<td>"  + this.calcularIVA(subtotal) + "</td>"
                 + "</tr>"
                 + "<tr>"
-                + "<td colspan=\"3\"><strong> Total </strong></td>" + "<td>" + "$ " + this.calcularTotal(subtotal, this.calcularIVA(subtotal)) + "</td>"
+                + "<th colspan=\"3\"> Total </th>" + "<td>" + this.calcularTotal(subtotal, this.calcularIVA(subtotal)) + "</td>"
                 + "</tr>"
-                + "</table>"
-                + "</div>";
+                + "</table>";
         return resultado;
     }
 

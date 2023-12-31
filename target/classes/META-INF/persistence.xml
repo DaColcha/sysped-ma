@@ -17,6 +17,7 @@
             <property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
             <property name="hibernate.connection.username" value="ma-server"/>
             <property name="hibernate.connection.password" value="ma-2023B"/>
+            <property name="hibernate.show_sql" value="true"/>
 
         </properties>
     </persistence-unit>

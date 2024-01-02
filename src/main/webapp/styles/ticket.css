@@ -1,5 +1,5 @@
 body {
-    background: rgb(211, 215, 237);
+    background: aliceblue;
     padding: 0 24px;
     margin: 0;
     display: flex;
@@ -9,7 +9,7 @@ body {
 }
 
 .ticket{
-    background: whitesmoke;
+    background: white;
     margin-top: 35px;
     padding: 5px 15px 30px;
     border-radius: 10px;

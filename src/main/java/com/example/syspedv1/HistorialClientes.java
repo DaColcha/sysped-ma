@@ -13,8 +13,12 @@ public class HistorialClientes {
     }
 
     public void registarCliente(ClienteEntity cliente) {
-        enviarABD(cliente);
-        setCliente(cliente);
+        if(!clienteExiste(cliente.getCedula())){
+            actulizarCliente(cliente);
+        }else{
+            enviarABD(cliente);
+            setCliente(cliente);
+        }
     }
 
     public boolean clienteExiste(String cedula){
@@ -37,10 +41,10 @@ public class HistorialClientes {
         return false;
     }
 
-    private void actulizarCliente(ClienteEntity clienteExistente, ClienteEntity clienteNuevo){
-        clienteExistente.setTelefono(clienteNuevo.getTelefono());
-        clienteExistente.setDireccion(clienteNuevo.getDireccion());
-        clienteExistente.setCorreoElectronico(clienteNuevo.getCorreoElectronico());
+    private void actulizarCliente(ClienteEntity clienteNuevo){
+        this.cliente.setTelefono(clienteNuevo.getTelefono());
+        this.cliente.setDireccion(clienteNuevo.getDireccion());
+        this.cliente.setCorreoElectronico(clienteNuevo.getCorreoElectronico());
     }
     private void enviarABD(ClienteEntity cliente){
         EntityManager entityManager = DBConnection.entityManager;

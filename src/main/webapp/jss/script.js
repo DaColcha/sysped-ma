@@ -1,4 +1,35 @@
+$(document).on('click', '.invisible-button', function () {
+    // Realizar alguna acción antes de la recarga (si es necesario)
+    // ...
+
+    // Cargar /carrito mediante AJAX
+    $.ajax({
+        url: '/carrito',
+        method: 'GET',
+        success: function () {
+            // Redirigir a /carrito
+            sessionStorage.setItem('clicEnBotonInvisible', 'true');
+            window.location.href = "/carrito";
+
+
+        },
+        error: function (xhr, status, error) {
+            console.error('Error al cargar /carrito:', status, error);
+        }
+    })
+
+})
+
 $(document).ready(function () {
+    var clicEnBotonInvisible = sessionStorage.getItem('clicEnBotonInvisible');
+
+    // Hacer clic en el label con id "Mostrar" solo si se hizo clic en el botón invisible
+    if (clicEnBotonInvisible === 'true') {
+        var labelMostrar = document.getElementById('Mostrar');
+        labelMostrar.click();
+        sessionStorage.removeItem('clicEnBotonInvisible');
+    }
+
     // Manejar el clic en el botón "Agregar al Carrito"
     $(document).on('click', '.product .agregar-carrito', function () {
         const producto = $(this).closest('.product');

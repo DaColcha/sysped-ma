@@ -2,10 +2,8 @@ package com.example.syspedv1;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import entity.ClienteEntity;
 
-import jakarta.persistence.EntityManager;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,8 +15,8 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "FacturaServlet", urlPatterns = {"/factura"})
 public class FacturaServlet extends HttpServlet {
-    FacturaController facturaController = new FacturaController();
-    ClienteController clientController = new ClienteController();
+    static FacturaController facturaController = new FacturaController();
+    HistorialClientes clientController = new HistorialClientes();
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         getServletContext().getRequestDispatcher("/factura.jsp").forward(request, response);
     }
@@ -46,6 +44,9 @@ public class FacturaServlet extends HttpServlet {
 
                 //Actualizar base de datos
                 clientController.registarCliente(client);
+
+                //request.setAttribute("cedulaCliente", cedula);
+                //request.setAttribute("codigoPedido", request.getParameter("codigoPedido"));
             }
 
             facturaController.setCodPedido(request.getParameter("codigoPedido"));
@@ -54,6 +55,7 @@ public class FacturaServlet extends HttpServlet {
             request.setAttribute("generarFactura", "");
             request.setAttribute("mostrarFactura", facturaController.mostrarFactura());
             request.setAttribute("mostrarDetalleFactura", facturaController.mostrarDetalleFactura());
+            request.setAttribute("mostrarMetodoPago", facturaController.mostrarMetodoDePago());
             getServletContext().getRequestDispatcher("/factura.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,7 +73,6 @@ public class FacturaServlet extends HttpServlet {
         JsonObject jsonRequest = gson.fromJson(request.getReader(), JsonObject.class);
         String cedula = jsonRequest.get("cedulaCliente").getAsString();
 
-
         if(clientController.clienteExiste(cedula)){
             ClienteEntity existente = clientController.cliente;
 
@@ -82,13 +83,11 @@ public class FacturaServlet extends HttpServlet {
             String direccionCliente=existente.getDireccion();
 
             jsonResponse = String.format(
-                    "{\"nombreCliente\":\"%s\",\"apellidoCliente\":\"%s\",\"telefonoCliente\":\"%s\",\"emailCliente\":\"%s\",\"direccionCliente\":\"%s\"}",
+                    "{\"nombreCliente\":\"%s\",\"apellidoCliente\":\"%s\",\"telefonoCliente\":\"%s\",\"emailCliente\":\"%s\",\"direccionCliente\":\"%s\",\"noEncontrado\":\"\"}",
                     nombreCliente, apellidoCliente, telefonoCliente, emailCliente, direccionCliente);
-
 
         }else{
             jsonResponse = "{\"noEncontrado\":\"Cliente no registrado\"}";
-            request.setAttribute("error", "Cliente no registrado");
         }
 
         try (PrintWriter out = response.getWriter()) {

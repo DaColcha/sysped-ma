@@ -1,8 +1,6 @@
 package com.example.syspedv1;
 
-import entity.ClienteEntity;
-import entity.DetallePedidosEntity;
-import entity.ProductoEntity;
+import entity.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
@@ -24,6 +22,14 @@ public class FacturaController {
 
     public void setCodPedido(String codPedido) {
         this.codPedido = codPedido;
+    }
+
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    public String getCodPedido() {
+        return codPedido;
     }
 
     public BigDecimal calcularSubtotal(List<DetallePedidosEntity> detallesPedido) {
@@ -90,7 +96,7 @@ public class FacturaController {
 
 
     public String mostrarFactura(){
-        String resultado =  "<h2>Factura Nº "+ generarCodigoFactura("0") + "</h2>"
+        String resultado =  "<h2>Factura Nº "+ generarCodigoFactura(ultimoNumeroFactura()) + "</h2>"
                 + "<p>Correspondiente al pedido Nº "+ this.codPedido + "</p> <hr />"
                 + "<table class=\"table-client\">"
                 + "<tr>"
@@ -153,8 +159,44 @@ public class FacturaController {
                         + "<tr>"
                         + "<th colspan=\"3\"> Total </th>" + "<td>" + this.calcularTotal(subtotal, this.calcularIVA(subtotal)) + "</td>"
                         + "</tr>"
-                        + "</table>";
+                        + "</table>" + "<hr/>";
         return resultado;
+    }
+
+    public String mostrarMetodoDePago(){
+        String resultado = "<label for = \"metodoPago\">Selecciona la forma de pago: </label>"
+                + "<select name=\"metodoPago\" id=\"metodoPago\">"
+                + "<option value=\"Efectivo\">Efectivo</option>"
+                + "<option value=\"Tarjeta\">Tarjeta</option> </select>";
+        return resultado;
+    }
+
+    public String ultimoNumeroFactura(){
+        String code = "00000";
+        try  {
+            List<FacturaEntity> facturaOrdenDescendente = DBConnection.entityManager.createNamedQuery
+                    ("Factura.ultima", FacturaEntity.class).getResultList();
+            if (facturaOrdenDescendente != null){
+                code = facturaOrdenDescendente.get(0).getNumFactura();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return code;
+    }
+
+    public void actualizarEstadoPedido(String idPedido){
+        PedidoEntity pedidoAuxiliar = null;
+        try  {
+            TypedQuery<PedidoEntity> pedidoById=  DBConnection.entityManager.createNamedQuery
+                    ("Pedido.byIdPedido", PedidoEntity.class);
+            pedidoById.setParameter(1, idPedido);
+            pedidoAuxiliar = pedidoById.getSingleResult();
+            pedidoAuxiliar.setEstado("Pagado");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

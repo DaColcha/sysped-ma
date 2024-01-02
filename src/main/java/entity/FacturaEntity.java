@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "factura", schema = "dbo", catalog = "sysped")
+@NamedQuery(name = "Factura.ultima", query = "SELECT p FROM  FacturaEntity p ORDER BY numFactura DESC LIMIT 1")
 public class FacturaEntity {
 
     @Id
@@ -105,6 +106,10 @@ public class FacturaEntity {
 
     public void setPedidoByPedido(PedidoEntity pedidoByPedido) {
         this.pedidoByPedido = pedidoByPedido;
+    }
+
+    public java.util.Date obtenerFechaFacturacion() {
+        return new java.util.Date();
     }
 
     @Override

@@ -10,17 +10,12 @@
     <script> <%@include file="jss/script.js"%></script>
 </head>
 <body>
-    <form action="/carrito" method="get">
-        <div class="header">
-            <h1>MENÚ</h1>
-            <div class="cart-button">
-                <button type="submit">Actualizar carrito</button>
-            </div>
-            <label for="cart-button-check">
-                Mostrar carrito
-            </label>
-        </div>
-    </form>
+    <div class="header">
+        <h1>MENÚ</h1>
+        <label id= "Mostrar" for="cart-button-check">
+            <button class="invisible-button">Mostrar carrito</button>
+        </label>
+    </div>
     <input type="checkbox" id="cart-button-check">
     ${menu}
     <div class="cart-container">

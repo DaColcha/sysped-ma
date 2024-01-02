@@ -1,0 +1,92 @@
+body {
+    background: rgb(211, 215, 237);
+    padding: 0 24px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.ticket{
+    background: whitesmoke;
+    margin-top: 35px;
+    padding: 5px 15px 30px;
+    border-radius: 10px;
+    text-align:center;
+}
+
+.ticket-header {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 25px 20px 5px;
+    text-align: left;
+}
+
+.ticket-num {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.table-container{
+    margin-bottom: 15px;
+    text-align: center;
+
+}
+
+table, tr{
+    height: 35px;
+    text-align: center;
+}
+
+.total-st{
+    text-align: right;
+    padding-right: 15px;
+    font-weight: bold;
+}
+
+.table-container th{
+    font-size: 14px;
+    padding: 0px 10px 0px 5px;
+
+}
+
+.go-back-btn, .generate-btn {
+    border-radius: 35px;
+    width: 40%;
+}
+
+.go-back-btn {
+    background-color: #ff4848;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.go-back-btn:hover {
+    background-color: #a32c2c;
+    transition: 0.5s;
+}
+
+.generate-btn {
+    background-color: rgb(73, 99, 246);
+    font-size: 14px;
+    padding: 10px;
+    margin: 5px;
+    font-weight: bold;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.generate-btn:hover {
+    background-color: #274f99;
+    color: white;
+    transition: 0.5s;
+}
+

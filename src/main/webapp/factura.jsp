@@ -46,7 +46,7 @@
 
                  <div>
                     <label for = "codigoPedido">Código del ticket del pedido: </label>
-                    <input type="text" name="codigoPedido" id="codigoPedido" >
+                    <input type="text" name="codigoPedido" id="codigoPedido" value="${codigoPedido}">
                  </div>
 
                  <button class="generate-btn" type="submit" >Generar factura</button>
@@ -57,6 +57,11 @@
         <div class="partes-factura">
             ${mostrarFactura}
             ${mostrarDetalleFactura}
+            <form action="/pago" method="post">
+                ${mostrarMetodoPago}
+                <button class="generate-btn" type="submit" >Cobrar Pedido</button>
+            </form>
+                ${notificacionPago}
         </div>
 
     </container>

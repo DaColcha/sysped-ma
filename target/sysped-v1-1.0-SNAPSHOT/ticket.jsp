@@ -4,14 +4,15 @@
     <title>Ticket</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script> <%@include file="jss/script.js"%></script>
+    <style><%@include file="styles/ticket.css"%></style>
 </head>
 <body>
-    <div>
+    <div class="ticket">
         ${ticket}
         <form action="/factura" method="get">
-            <button type="submit">Generar factura</button>
+            <button class="generate-btn" type="submit">Generar factura</button>
         </form>
-        <button class="delete-all-button">Regresar</button>
+        <button class="go-back-btn">Regresar</button>
     </div>
 </body>
 </html>

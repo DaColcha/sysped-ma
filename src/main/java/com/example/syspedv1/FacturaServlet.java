@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 @WebServlet(name = "FacturaServlet", urlPatterns = {"/factura"})
 public class FacturaServlet extends HttpServlet {
     static FacturaController facturaController = new FacturaController();
-    HistorialClientes clientController = new HistorialClientes();
+    ClienteController clientController = new ClienteController();
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         getServletContext().getRequestDispatcher("/factura.jsp").forward(request, response);
     }

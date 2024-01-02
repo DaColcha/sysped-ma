@@ -5,7 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 
-public class HistorialClientes {
+public class ClienteController {
 
     ClienteEntity cliente;
     private void setCliente(ClienteEntity cliente) {
@@ -14,11 +14,12 @@ public class HistorialClientes {
 
     public void registarCliente(ClienteEntity cliente) {
         if(!clienteExiste(cliente.getCedula())){
-            actulizarCliente(cliente);
-        }else{
             enviarABD(cliente);
-            setCliente(cliente);
+        }else{
+            actulizarCliente(cliente);
         }
+
+        setCliente(cliente);
     }
 
     public boolean clienteExiste(String cedula){
@@ -42,9 +43,26 @@ public class HistorialClientes {
     }
 
     private void actulizarCliente(ClienteEntity clienteNuevo){
-        this.cliente.setTelefono(clienteNuevo.getTelefono());
-        this.cliente.setDireccion(clienteNuevo.getDireccion());
-        this.cliente.setCorreoElectronico(clienteNuevo.getCorreoElectronico());
+        EntityManager entityManager = DBConnection.entityManager;
+        EntityTransaction transaction = null;
+
+        try{
+            transaction = entityManager.getTransaction();
+            transaction.begin();
+
+            entityManager.find(ClienteEntity.class, this.cliente.getCedula());
+            this.cliente.setTelefono(clienteNuevo.getTelefono());
+            this.cliente.setDireccion(clienteNuevo.getDireccion());
+            this.cliente.setCorreoElectronico(clienteNuevo.getCorreoElectronico());
+
+            transaction.commit();
+
+        } catch (Exception e){
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
     }
     private void enviarABD(ClienteEntity cliente){
         EntityManager entityManager = DBConnection.entityManager;

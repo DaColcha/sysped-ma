@@ -16,12 +16,10 @@
 
         if (opcionSeleccionada === "cliente_general") {
             contenido.innerHTML = "" +
-                "<container>" +
-                "<div class=\"registro-cliente\">" +
                 "<form action=\"/factura\" method=\"post\">" +
                 "<div>" +
                 "<label for = \"cedulaCliente\">Cédula: </label>" +
-                "<input type=\"text\" name=\"cedulaCliente\" id=\"cedulaCliente\" value=\"${cedulaCliente}\">" +
+                "<input type=\"text\" name=\"cedulaCliente\" id=\"cedulaCliente\" value=\"9999999999\">" +
                 "<div class=\"validate-btn\" onclick=\"validarCliente()\">Validar</div>" +
                 "<div id=\"error\">${error}</div>" +
                 "</div>  <div>" +
@@ -42,14 +40,7 @@
                 "</div>  <div>" +
                 "<label for = \"codigoPedido\">Código del ticket del pedido: </label>" +
                 "<input type=\"text\" name=\"codigoPedido\" id=\"codigoPedido\" value=\"${codigoPedido}\"> </div>" +
-                "<button class=\"generate-btn\" type=\"submit\" >Generar factura</button> </form> </div>" +
-                "<div class=\"partes-factura\">" +
-                "${mostrarFactura}" +
-                "${mostrarDetalleFactura}" +
-                "<form action=\"/pago\" method=\"post\">" +
-                "${mostrarMetodoPago}" +
-                "<button class=\"generate-btn\" type=\"submit\" >Cobrar Pedido</button>" +
-                "</form> ${notificacionPago} </div> </container>";
+                "<button class=\"generate-btn\" type=\"submit\" >Generar factura</button> </form>";
 
         } else if (opcionSeleccionada === "consumidor_final") {
             contenido.innerHTML = "" +

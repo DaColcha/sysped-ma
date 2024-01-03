@@ -13,7 +13,7 @@
     <div class="header">
         <h1>MENÚ</h1>
         <label id= "Mostrar" for="cart-button-check">
-            <button class="invisible-button">Mostrar carrito</button>
+            <button class="invisible-button cart-button">Mostrar carrito</button>
         </label>
     </div>
     <input type="checkbox" id="cart-button-check">

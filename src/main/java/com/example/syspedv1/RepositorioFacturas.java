@@ -27,6 +27,7 @@ public class RepositorioFacturas {
         this.setFactura(factura);
     }
 
+
     private void guardarFacturaEnBD(FacturaEntity factura){
         EntityManager entityManager = DBConnection.entityManager;
         EntityTransaction transaction = null;

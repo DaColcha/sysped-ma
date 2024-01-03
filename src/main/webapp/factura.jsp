@@ -19,7 +19,7 @@
                 "<form action=\"/factura\" method=\"post\">" +
                 "<div>" +
                 "<label for = \"cedulaCliente\">Cédula: </label>" +
-                "<input type=\"text\" name=\"cedulaCliente\" id=\"cedulaCliente\" value=\"9999999999\">" +
+                "<input type=\"text\" name=\"cedulaCliente\" id=\"cedulaCliente\" value=\"${cedulaCliente}\">" +
                 "<div class=\"validate-btn\" onclick=\"validarCliente()\">Validar</div>" +
                 "<div id=\"error\">${error}</div>" +
                 "</div>  <div>" +

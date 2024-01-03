@@ -187,13 +187,16 @@ public class FacturaController {
     }
 
     public void actualizarEstadoPedido(String idPedido){
-        PedidoEntity pedidoAuxiliar = null;
+        List<PedidoEntity> listaPedidoAuxiliar;
         try  {
             TypedQuery<PedidoEntity> pedidoById=  DBConnection.entityManager.createNamedQuery
                     ("Pedido.byIdPedido", PedidoEntity.class);
             pedidoById.setParameter(1, idPedido);
-            pedidoAuxiliar = pedidoById.getSingleResult();
-            pedidoAuxiliar.setEstado("Pagado");
+            listaPedidoAuxiliar = pedidoById.getResultList();
+            for(PedidoEntity pedidoAuxiliar : listaPedidoAuxiliar){
+                pedidoAuxiliar.setEstado("Pagado");
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

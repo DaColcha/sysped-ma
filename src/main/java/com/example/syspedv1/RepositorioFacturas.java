@@ -2,6 +2,7 @@ package com.example.syspedv1;
 
 import entity.ClienteEntity;
 import entity.FacturaEntity;
+import entity.PedidoEntity;
 import entity.ProductoEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -26,6 +27,27 @@ public class RepositorioFacturas {
         this.guardarFacturaEnBD(factura);
         this.setFactura(factura);
     }
+
+    /*private void actulizarEstadoPedido(String nuevoEstadoPedido){
+        EntityManager entityManager = DBConnection.entityManager;
+        EntityTransaction transaction = null;
+
+        try{
+            transaction = entityManager.getTransaction();
+            transaction.begin();
+
+            entityManager.find(PedidoEntity.class, this.factura.getPedido());
+            this.cliente.setTelefono(clienteNuevo.getTelefono());
+
+            transaction.commit();
+
+        } catch (Exception e){
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }*/
 
 
     private void guardarFacturaEnBD(FacturaEntity factura){
